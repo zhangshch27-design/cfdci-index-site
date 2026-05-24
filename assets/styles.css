@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: light;
   --paper: #f4f7f6;
   --paper-strong: #ffffff;
@@ -141,7 +141,7 @@ input {
 .download,
 .citation,
 .signal-band,
-.agents,
+.domain-measurement,
 .evidence,
 .validation {
   padding: 72px 0;
@@ -251,7 +251,7 @@ input {
 .citation-box,
 .audit-strip article,
 .pipeline-step,
-.agent-card,
+.domain-card,
 .prompt-console,
 .prompt-rules,
 .evidence-card,
@@ -696,7 +696,7 @@ tbody tr:hover {
 
 .audit-strip span,
 .pipeline-step span,
-.agent-card span,
+.domain-card span,
 .evidence-header span {
   color: var(--teal);
   font-size: 0.78rem;
@@ -717,7 +717,7 @@ tbody tr:hover {
 
 .audit-strip p,
 .pipeline-step p,
-.agent-card p,
+.domain-card p,
 .prompt-rules li,
 .evidence-chain p,
 .formula-card p,
@@ -756,7 +756,7 @@ tbody tr:hover {
 }
 
 .pipeline-step h3,
-.agent-card h3,
+.domain-card h3,
 .prompt-console h3,
 .prompt-rules h3,
 .formula-card h3,
@@ -774,36 +774,36 @@ tbody tr:hover {
 }
 
 .pipeline-step p,
-.agent-card p {
+.domain-card p {
   margin: 14px 0 0;
   font-size: 0.94rem;
 }
 
-.agents {
+.domain-measurement {
   background: rgba(244, 247, 246, 0.86);
 }
 
-.agent-grid {
+.domain-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
-.agent-card {
+.domain-card {
   min-height: 210px;
   padding: 20px;
   border-top: 4px solid var(--blue);
 }
 
-.agent-card:nth-child(2n) {
+.domain-card:nth-child(2n) {
   border-top-color: var(--teal);
 }
 
-.agent-card:nth-child(3n) {
+.domain-card:nth-child(3n) {
   border-top-color: var(--copper);
 }
 
-.agent-card:nth-child(4n) {
+.domain-card:nth-child(4n) {
   border-top-color: var(--green);
 }
 
@@ -1075,7 +1075,7 @@ tbody tr:hover {
     display: none;
   }
 
-  .agent-grid,
+  .domain-grid,
   .audit-strip,
   .validation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1110,7 +1110,7 @@ tbody tr:hover {
   .chart-grid,
   .method-cards,
   .pipeline,
-  .agent-grid,
+  .domain-grid,
   .validation-grid {
     grid-template-columns: 1fr;
   }
@@ -1149,7 +1149,7 @@ tbody tr:hover {
   .download,
   .citation,
   .signal-band,
-  .agents,
+  .domain-measurement,
   .evidence,
   .validation {
     padding: 46px 0;
@@ -1185,7 +1185,7 @@ tbody tr:hover {
   .citation-box,
   .audit-strip article,
   .pipeline-step,
-  .agent-card,
+  .domain-card,
   .prompt-console,
   .prompt-rules,
   .evidence-card,
