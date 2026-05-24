@@ -1,4 +1,4 @@
-Ôªø:root {
+:root {
   color-scheme: light;
   --paper: #f4f7f6;
   --paper-strong: #ffffff;
@@ -282,7 +282,7 @@ input {
 .method-card,
 .download-card,
 .citation-box,
-.audit-strip article,
+.method-strip article,
 .method-detail-grid article,
 .pipeline-step,
 .domain-card,
@@ -722,19 +722,19 @@ tbody tr:hover {
   line-height: 1.6;
 }
 
-.audit-strip {
+.method-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 18px;
 }
 
-.audit-strip article {
+.method-strip article {
   min-height: 150px;
   padding: 20px;
 }
 
-.audit-strip span,
+.method-strip span,
 .pipeline-step span,
 .domain-card span,
 .evidence-header span {
@@ -743,7 +743,7 @@ tbody tr:hover {
   font-weight: 900;
 }
 
-.audit-strip strong {
+.method-strip strong {
   display: block;
   margin-top: 10px;
   font-family:
@@ -755,7 +755,7 @@ tbody tr:hover {
   line-height: 1;
 }
 
-.audit-strip p,
+.method-strip p,
 .method-detail-grid p,
 .pipeline-step p,
 .domain-card p,
@@ -1229,7 +1229,7 @@ html[data-lang="en"] .data-empty main::before {
 }
 
 html[data-lang="zh"] .data-empty main::before {
-  content: "Êï∞ÊçÆÊñá‰ª∂Êú™Âä†ËΩΩ";
+  content: " ˝æ›Œƒº˛Œ¥º”‘ÿ";
 }
 
 .data-empty main::before {
@@ -1277,7 +1277,7 @@ html[data-lang="zh"] .data-empty main::before {
   .prompt-anatomy,
   .case-grid,
   .case-analysis-grid,
-  .audit-strip,
+  .method-strip,
   .validation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1388,7 +1388,7 @@ html[data-lang="zh"] .data-empty main::before {
   .toolbar,
   .signal-board,
   .download-grid,
-  .audit-strip {
+  .method-strip {
     grid-template-columns: 1fr;
   }
 
@@ -1399,7 +1399,7 @@ html[data-lang="zh"] .data-empty main::before {
   .method-card,
   .download-card,
   .citation-box,
-    .audit-strip article,
+    .method-strip article,
     .method-detail-grid article,
     .pipeline-step,
     .domain-card,
