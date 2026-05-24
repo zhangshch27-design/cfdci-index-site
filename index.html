@@ -23,8 +23,8 @@
         <a href="#overview"><span class="lang-en">Overview</span><span class="lang-zh">概览</span></a>
         <a href="#explorer"><span class="lang-en">Index Panel</span><span class="lang-zh">指数面板</span></a>
         <a href="#method"><span class="lang-en">Construction</span><span class="lang-zh">测度流程</span></a>
-        <a href="#domain-measurement"><span class="lang-en">Domains</span><span class="lang-zh">分项测度</span></a>
-        <a href="#cases"><span class="lang-en">Examples</span><span class="lang-zh">案例</span></a>
+        <a href="#domain-measurement"><span class="lang-en">Scoring Modules</span><span class="lang-zh">评分模块</span></a>
+        <a href="#cases"><span class="lang-en">Case</span><span class="lang-zh">案例</span></a>
         <a href="#validation"><span class="lang-en">Validation</span><span class="lang-zh">质检验证</span></a>
         <a href="#download"><span class="lang-en">Downloads</span><span class="lang-zh">下载</span></a>
       </nav>
@@ -48,10 +48,10 @@
             </h1>
             <p class="lead">
               <span class="lang-en">
-                The index is constructed from public annual reports, corporate social responsibility reports, and other disclosure texts. It operationalizes a financial digital capability maturity framework into eight domains and 75 item-level scores, which are aggregated into an institution-year panel.
+                This site documents the construction of a financial-institution digital capability index: the regulatory maturity grid, the eight domain-specific scoring agents, the report-level scoring record, and the validation evidence behind the public institution-year panel.
               </span>
               <span class="lang-zh">
-                指数基于金融机构年报、社会责任报告和其他公开披露文本构建，将金融数字化能力成熟度框架转化为八个能力域、75 个能力项的分项评分，并汇总形成机构-年份层面的面板数据。
+                本网站说明金融机构数字化能力指数的构建过程：监管成熟度框架、八个分领域评分智能体、报告级评分记录，以及公开机构-年份面板背后的有效性检验。
               </span>
             </p>
             <div class="hero-actions" aria-label="Primary actions">
@@ -80,7 +80,7 @@
                 <span class="lang-zh">2025 平均数字化能力</span>
               </p>
               <strong id="heroMean">0.300</strong>
-              <span id="heroDelta">vs. 2024 -0.075</span>
+              <span id="heroDelta">Latest public year: 2025</span>
               <p>
                 <span class="lang-en">The public panel covers institution-year observations from 2010 to 2025. Report-level scores are consolidated to the institution-year level.</span>
                 <span class="lang-zh">公开版指数覆盖 2010 至 2025 年的机构-年份面板，结果由报告级评分合并到机构-年份层面。</span>
@@ -238,101 +238,73 @@
       </section>
 
       <section class="method" id="method">
-        <div class="shell">
+        <div class="shell method-editorial">
           <div class="section-heading">
-            <p class="eyebrow"><span class="lang-en">Measurement procedure</span><span class="lang-zh">测度流程</span></p>
+            <p class="eyebrow"><span class="lang-en">Measurement architecture</span><span class="lang-zh">测度架构</span></p>
             <h2>
-              <span class="lang-en">From public disclosures to an institution-year index</span>
-              <span class="lang-zh">公开披露文本的指数化流程</span>
+              <span class="lang-en">A regulator-grounded scoring pipeline for long-form disclosures</span>
+              <span class="lang-zh">面向长篇披露文本的监管框架化评分流程</span>
             </h2>
             <p>
-              <span class="lang-en">The construction procedure separates sample registration, file mapping, domain scoring, structured parsing, score aggregation, and validation checks. The purpose is to show how lengthy public reports are converted into comparable numerical indicators.</span>
-              <span class="lang-zh">测度流程按样本登记、文件映射、领域评分、结构化解析、指数合并和有效性检验展开，说明长篇公开报告如何转换为可比较的数值指标。</span>
+              <span class="lang-en">The site now follows the manuscript workflow: the PBOC maturity framework defines the scoring grid; eight domain-specific scoring agents read the source report; an evaluation layer checks source support and score alignment; accepted item scores are standardized into domain and total indices.</span>
+              <span class="lang-zh">网页按照论文流程图重排：央行成熟度框架定义评分网格；八个分领域评分智能体读取报告原文；评估层检查原文依据与分值匹配；通过后的分项得分再标准化为能力域指数和总指数。</span>
             </p>
           </div>
 
-          <div class="method-strip" aria-label="Measurement summary">
-            <article>
-              <span><span class="lang-en">Disclosure texts</span><span class="lang-zh">测度文本</span></span>
-              <strong>8,783</strong>
-              <p><span class="lang-en">annual reports, CSR reports, and disclosure documents</span><span class="lang-zh">年报、社会责任报告和信息披露文本</span></p>
-            </article>
-            <article>
-              <span><span class="lang-en">Scoring framework</span><span class="lang-zh">评分框架</span></span>
-              <strong>8 × 75</strong>
-              <p><span class="lang-en">eight domains and 75 capability items</span><span class="lang-zh">八个能力域、75 个能力项</span></p>
-            </article>
-            <article>
-              <span><span class="lang-en">Model setting</span><span class="lang-zh">模型设置</span></span>
-              <strong>0.0</strong>
-              <p><span class="lang-en">temperature fixed at zero to reduce repeated-scoring variation</span><span class="lang-zh">temperature 固定为 0，降低重复评分波动</span></p>
-            </article>
-            <article>
-              <span><span class="lang-en">Rationale coverage</span><span class="lang-zh">理由记录</span></span>
-              <strong>99.48%</strong>
-              <p><span class="lang-en">non-empty domain-level scoring rationale in report-level records</span><span class="lang-zh">报告级能力域原因文本覆盖率</span></p>
-            </article>
+          <div class="review-focus" aria-label="Reviewer-facing clarification">
+            <div>
+              <span class="lang-en">Core clarification</span>
+              <span class="lang-zh">核心说明</span>
+              <strong><span class="lang-en">Measurement validity</span><span class="lang-zh">测度有效性</span></strong>
+              <p><span class="lang-en">The index is tied to a formal maturity grid with item definitions, tiered standards, and domain-level aggregation rules.</span><span class="lang-zh">指数锚定正式成熟度指标体系，包含能力项定义、档位标准和能力域汇总规则。</span></p>
+            </div>
+            <div>
+              <span class="lang-en">Core clarification</span>
+              <span class="lang-zh">核心说明</span>
+              <strong><span class="lang-en">Process documentation</span><span class="lang-zh">流程说明</span></strong>
+              <p><span class="lang-en">The workflow records source files, request identifiers, item scores, and scoring rationales at the report level.</span><span class="lang-zh">流程在报告层面保留来源文件、请求编号、分项得分和评分理由。</span></p>
+            </div>
+            <div>
+              <span class="lang-en">Core clarification</span>
+              <span class="lang-zh">核心说明</span>
+              <strong><span class="lang-en">Benchmarking and validation</span><span class="lang-zh">基准与验证</span></strong>
+              <p><span class="lang-en">Manual scoring, patent outcomes, keyword measures, and the digital renminbi pilot are used as complementary checks.</span><span class="lang-zh">人工评分、金融科技专利、关键词法和数字人民币试点共同作为补充检验。</span></p>
+            </div>
           </div>
 
-          <div class="method-detail-grid">
-            <article>
-              <h3><span class="lang-en">Sample frame</span><span class="lang-zh">样本框架</span></h3>
-              <p><span class="lang-en">The sample covers banks, insurers, and securities firms with available public reports during 2010-2025. Institution names are standardized before report-level scores are consolidated.</span><span class="lang-zh">样本覆盖 2010-2025 年具有公开报告的银行、保险和证券机构。报告级评分合并前，先对机构名称进行标准化处理。</span></p>
+          <div class="architecture-grid">
+            <article class="framework-panel">
+              <p class="eyebrow"><span class="lang-en">Regulatory scoring grid</span><span class="lang-zh">监管评分网格</span></p>
+              <h3><span class="lang-en">Guidelines on Financial Digital Capability Maturity</span><span class="lang-zh">《金融数字化能力成熟度指引》</span></h3>
+              <div class="framework-numbers">
+                <span><strong>8</strong><em><span class="lang-en">domains</span><span class="lang-zh">能力域</span></em></span>
+                <span><strong>24</strong><em><span class="lang-en">subdomains</span><span class="lang-zh">能力子域</span></em></span>
+                <span><strong>75</strong><em><span class="lang-en">items</span><span class="lang-zh">能力项</span></em></span>
+              </div>
+              <p>
+                <span class="lang-en">Each capability item is scored on a 0-5 maturity scale. Domain scores are normalized by the maximum possible item score, which keeps domains comparable despite different item counts.</span>
+                <span class="lang-zh">每个能力项按照 0-5 的成熟度档位评分。能力域得分按本域最高可能分标准化，从而保持跨领域可比性。</span>
+              </p>
+              <a class="text-link" href="downloads/financial-digital-capability-maturity-guidelines.pdf" download>
+                <i data-lucide="file-text"></i>
+                <span class="lang-en">Download PBOC guideline</span>
+                <span class="lang-zh">下载央行能力指引</span>
+              </a>
             </article>
-            <article>
-              <h3><span class="lang-en">Document handling</span><span class="lang-zh">文本处理</span></h3>
-              <p><span class="lang-en">Each report keeps its original file path, report type, institution-year identifiers, and remote file identifier. This file ledger is used to connect score records back to source documents.</span><span class="lang-zh">每份报告保留原始路径、报告类型、机构-年份标识和远端文件 ID，用于把评分记录与来源文件对应起来。</span></p>
-            </article>
-            <article>
-              <h3><span class="lang-en">Scoring protocol</span><span class="lang-zh">评分协议</span></h3>
-              <p><span class="lang-en">The scoring instructions require item-level integers from 0 to 5, item-specific rationales, and a strict JSON structure. Ambiguous or generic statements are not treated as high-level capability evidence.</span><span class="lang-zh">评分指令要求输出 0 到 5 的分项整数分、逐项评分理由和严格 JSON 结构。模糊表述或泛化口号不作为高档位能力依据。</span></p>
-            </article>
-            <article>
-              <h3><span class="lang-en">Aggregation rule</span><span class="lang-zh">合并规则</span></h3>
-              <p><span class="lang-en">When multiple reports are available for the same institution-year, item-level scores are consolidated before domain and total indices are computed. The public release reports the total index and eight domain scores.</span><span class="lang-zh">同一机构-年份存在多份报告时，先在能力项层面合并，再计算能力域指数和总指数。公开版发布总指数和八个能力域得分。</span></p>
-            </article>
-          </div>
 
-          <div class="pipeline" aria-label="Measurement workflow">
-            <article class="pipeline-step">
-              <span>01</span>
-              <h3><span class="lang-en">Register reports</span><span class="lang-zh">样本登记</span></h3>
-              <p><span class="lang-en">Create a stable manifest with institution name, year, report type, original path, and a unique result identifier.</span><span class="lang-zh">按机构、年份、报告类型和原始路径生成清单，每份文件保留唯一 `result_id`。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>02</span>
-              <h3><span class="lang-en">Map files</span><span class="lang-zh">文件映射</span></h3>
-              <p><span class="lang-en">Upload report PDFs and retain the mapping between local file paths, remote file identifiers, and institution metadata.</span><span class="lang-zh">将 PDF 上传为远端 `file_id`，并保留 `file_id`、本地路径与机构元数据的映射关系。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>03</span>
-              <h3><span class="lang-en">Score by domain</span><span class="lang-zh">领域评分</span></h3>
-              <p><span class="lang-en">Run eight domain-specific scoring tasks, each focused on one capability domain and its item-level criteria.</span><span class="lang-zh">八个领域测度任务分别读取全文，在对应能力域内完成原文识别、档位判断和逐项评分。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>04</span>
-              <h3><span class="lang-en">Constrain source basis</span><span class="lang-zh">原文依据约束</span></h3>
-              <p><span class="lang-en">Require source-grounded rationales. If no specific disclosure supports an item, the item is assigned zero.</span><span class="lang-zh">每次调用要求输出分项 0-5 整数分和评分理由；缺少明确原文依据时按 0 分处理。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>05</span>
-              <h3><span class="lang-en">Parse structured output</span><span class="lang-zh">结构化解析</span></h3>
-              <p><span class="lang-en">Parse strict JSON and keep request identifiers, token usage, elapsed time, missing fields, and raw responses.</span><span class="lang-zh">脚本解析严格 JSON，并记录 `chat_id`、token、耗时、缺失项和原始响应。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>06</span>
-              <h3><span class="lang-en">Merge reports</span><span class="lang-zh">报告合并</span></h3>
-              <p><span class="lang-en">Combine multiple reports for the same institution-year at the item level before computing domain indices.</span><span class="lang-zh">同一机构-年份存在多份公开报告时，按能力项保留更高披露依据对应的分数。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>07</span>
-              <h3><span class="lang-en">Standardize indices</span><span class="lang-zh">标准化</span></h3>
-              <p><span class="lang-en">Normalize domain scores by the maximum possible item score, then compute the total index over all 75 items.</span><span class="lang-zh">能力域指数按本域最高可能分标准化，总指数对 75 个能力项采用同一计算逻辑。</span></p>
-            </article>
-            <article class="pipeline-step">
-              <span>08</span>
-              <h3><span class="lang-en">Check validity</span><span class="lang-zh">质量控制</span></h3>
-              <p><span class="lang-en">Check score ranges, rationale fields, file mappings, spot-check samples, external criteria, and keyword benchmarks.</span><span class="lang-zh">执行分数范围、理由文本、路径映射、人工抽样、外部效标和关键词法对照检查。</span></p>
+            <article class="workflow-panel">
+              <p class="eyebrow"><span class="lang-en">Manuscript workflow, redrawn</span><span class="lang-zh">论文流程图重绘</span></p>
+              <div class="workflow-diagram" aria-label="Measurement workflow">
+                <div class="workflow-node source"><strong><span class="lang-en">Annual and CSR reports</span><span class="lang-zh">年报与社会责任报告</span></strong><small>PDF / text / report metadata</small></div>
+                <div class="workflow-node criteria"><strong><span class="lang-en">Scoring criteria</span><span class="lang-zh">评分标准</span></strong><small>PBOC grid + item rubrics</small></div>
+                <div class="workflow-node agents"><strong><span class="lang-en">Eight domain agents</span><span class="lang-zh">八个领域智能体</span></strong><small>extract · synthesize · score</small></div>
+                <div class="workflow-node gate"><strong><span class="lang-en">Evaluation layer</span><span class="lang-zh">结果评估层</span></strong><small>evidence · reasoning · score fit</small></div>
+                <div class="workflow-node output"><strong><span class="lang-en">Index output</span><span class="lang-zh">指数输出</span></strong><small>score · evidence · basis · request ID</small></div>
+              </div>
+              <p>
+                <span class="lang-en">The evaluation layer accepts records after checking source support, reasoning consistency, and score alignment. Accepted records retain the score, supporting basis, and request identifier before aggregation.</span>
+                <span class="lang-zh">评估层检查原文依据、推理一致性和分值匹配。通过后的记录保留分值、支撑依据和请求编号，再进入指数汇总。</span>
+              </p>
             </article>
           </div>
         </div>
@@ -341,352 +313,273 @@
       <section class="domain-measurement" id="domain-measurement">
         <div class="shell">
           <div class="section-heading">
-            <p class="eyebrow"><span class="lang-en">Domain-level measurement</span><span class="lang-zh">分项测度</span></p>
+            <p class="eyebrow"><span class="lang-en">Scoring modules</span><span class="lang-zh">评分模块</span></p>
             <h2>
-              <span class="lang-en">Measurement design across eight capability domains</span>
-              <span class="lang-zh">八个能力域的测度分工</span>
+              <span class="lang-en">Eight domain agents, one common scoring contract</span>
+              <span class="lang-zh">八个领域智能体与统一评分约束</span>
             </h2>
             <p>
-              <span class="lang-en">The eight domains follow the regulatory maturity framework. Each domain has separate item definitions, tiered standards, and source-basis requirements, which reduces category mixing across governance, infrastructure, data, service delivery, and risk management.</span>
-              <span class="lang-zh">八个能力域对应监管成熟度框架。每个领域分别设置能力项定义、分级标准和原文依据要求，以减少治理、基础设施、数据、服务和风险管理等类别的混淆。</span>
+              <span class="lang-en">The eight agents form a coordinated division of labor under the same 75-item maturity framework. Each agent is responsible for a coherent domain and the same output contract: item score, source-grounded rationale, and structured result fields.</span>
+              <span class="lang-zh">八个智能体是在同一个 75 项成熟度框架下形成的分工体系。每个智能体负责一个能力域，并遵循同一输出约束：分项得分、基于原文的理由和结构化结果字段。</span>
             </p>
           </div>
 
-          <div class="domain-grid expanded">
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 1 · 9 items</span><span class="lang-zh">领域一 · 9 项</span></span>
-              <h3><span class="lang-en">Fintech Governance System</span><span class="lang-zh">金融科技治理体系</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: organizational coordination, strategic planning, digital culture, ecosystem building, technology ethics, and responsibility mechanisms.</span><span class="lang-zh">关注组织协调、战略规划、数字文化、生态建设、科技伦理和主体责任。</span></li>
-                <li><span class="lang-en">High scores require explicit committees, formal plans, implementation mechanisms, or named governance arrangements.</span><span class="lang-zh">高档位通常要求披露委员会、正式规划、执行机制或明确治理安排。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 2 · 8 items</span><span class="lang-zh">领域二 · 8 项</span></span>
-              <h3><span class="lang-en">Data Factor Potential</span><span class="lang-zh">数据要素潜能释放</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: data strategy, governance, architecture, standards, quality, applications, sharing, and security.</span><span class="lang-zh">关注数据规划、治理体系、数据架构、数据标准、数据质量、数据应用、共享和安全。</span></li>
-                <li><span class="lang-en">The task separates broad claims about data from concrete systems, standards, quality controls, and business applications.</span><span class="lang-zh">测度时区分泛化数据表述与具体系统、标准、质量控制和业务应用。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 3 · 13 items</span><span class="lang-zh">领域三 · 13 项</span></span>
-              <h3><span class="lang-en">New Digital Infrastructure</span><span class="lang-zh">新型数字基础设施</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: data centers, disaster recovery, security operations, green efficiency, networks, IPv6, cloud, and secure computing.</span><span class="lang-zh">关注数据中心、容灾、安全、运维、绿色能效、网络、IPv6、云和安全计算。</span></li>
-                <li><span class="lang-en">Higher tiers require deployment scale, resilience, automation, or coverage metrics rather than isolated pilot language.</span><span class="lang-zh">高档位通常要求部署规模、韧性、自动化或覆盖率信息，而不是孤立试点表述。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 4 · 7 items</span><span class="lang-zh">领域四 · 7 项</span></span>
-              <h3><span class="lang-en">Core Technology Application</span><span class="lang-zh">关键核心技术应用</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: industry-research collaboration, supply-chain stability, proprietary control, distributed architecture, cloud migration, and value creation.</span><span class="lang-zh">关注产学研合作、供应链稳定、核心技术掌控、分布式架构、云化和价值创造。</span></li>
-                <li><span class="lang-en">The scoring distinguishes technology tracking from actual platform deployment or externally observable service output.</span><span class="lang-zh">评分区分技术跟踪、平台落地和可观察的服务输出。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 5 · 12 items</span><span class="lang-zh">领域五 · 12 项</span></span>
-              <h3><span class="lang-en">Digital Operating Momentum</span><span class="lang-zh">数字化经营动能</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: agile development, middle-platform construction, automated risk prevention, and intelligent marketing.</span><span class="lang-zh">关注敏捷创新、中台建设、自动化风险防控和数智化营销能力。</span></li>
-                <li><span class="lang-en">The domain captures operational embedding of digital systems rather than general technology investment.</span><span class="lang-zh">该领域强调数字系统嵌入经营流程，而不是一般性科技投入。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 6 · 11 items</span><span class="lang-zh">领域六 · 11 项</span></span>
-              <h3><span class="lang-en">Financial Service Reengineering</span><span class="lang-zh">金融服务智慧再造</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: process reengineering, omnichannel services, small business finance, rural finance, supply-chain finance, green finance, and inclusive access.</span><span class="lang-zh">关注流程再造、线上线下渠道、小微、农村、供应链、绿色和无障碍服务。</span></li>
-                <li><span class="lang-en">High scores require evidence that digital tools change service delivery, not only that online channels exist.</span><span class="lang-zh">高档位要求数字工具改变服务交付方式，而不只是存在线上渠道。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 7 · 11 items</span><span class="lang-zh">领域七 · 11 项</span></span>
-              <h3><span class="lang-en">Prudent Fintech Management</span><span class="lang-zh">金融科技审慎管理</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: supervisory technology, compliance data, risk control, risk information repositories, new technology governance, and algorithm management.</span><span class="lang-zh">关注监管科技、合规数据、风控能力、风险信息库、新技术和算法管理。</span></li>
-                <li><span class="lang-en">The scoring favors documented monitoring, controls, risk databases, and lifecycle governance over generic compliance statements.</span><span class="lang-zh">评分更重视监测、控制、风险信息库和全生命周期治理，而非泛化合规表述。</span></li>
-              </ul>
-            </article>
-            <article class="domain-card">
-              <span><span class="lang-en">Domain 8 · 4 items</span><span class="lang-zh">领域八 · 4 项</span></span>
-              <h3><span class="lang-en">Sustainable Development Foundation</span><span class="lang-zh">可持续化发展基础</span></h3>
-              <ul>
-                <li><span class="lang-en">Focus: fintech talent selection, talent training, standard setting, and standard implementation.</span><span class="lang-zh">关注金融科技人才选育、标准制定和标准实施。</span></li>
-                <li><span class="lang-en">The domain measures capability building that supports long-run digital transformation.</span><span class="lang-zh">该领域衡量支撑长期数字化转型的能力建设基础。</span></li>
-              </ul>
-            </article>
+          <div class="module-table-wrap">
+            <table class="module-table">
+              <thead>
+                <tr>
+                  <th><span class="lang-en">Module</span><span class="lang-zh">模块</span></th>
+                  <th><span class="lang-en">Items</span><span class="lang-zh">项目数</span></th>
+                  <th><span class="lang-en">What the agent reads for</span><span class="lang-zh">主要识别内容</span></th>
+                  <th><span class="lang-en">Typical evidence</span><span class="lang-zh">典型依据</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><span class="lang-en">Fintech Governance Framework</span><span class="lang-zh">金融科技治理体系</span></strong></td>
+                  <td>9</td>
+                  <td><span class="lang-en">Governance structure, strategic planning, digital culture, ecosystem coordination, ethics, and responsibility mechanisms.</span><span class="lang-zh">治理结构、战略规划、数字文化、生态协同、科技伦理和主体责任。</span></td>
+                  <td><span class="lang-en">Board decisions, dedicated committees, named plans, implementation mechanisms.</span><span class="lang-zh">董事会安排、专门委员会、正式规划、执行机制。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Data Factor Potential</span><span class="lang-zh">数据要素潜能释放</span></strong></td>
+                  <td>8</td>
+                  <td><span class="lang-en">Data planning, governance, architecture, standards, quality, application, sharing, and security.</span><span class="lang-zh">数据规划、治理、架构、标准、质量、应用、共享与安全。</span></td>
+                  <td><span class="lang-en">Data platforms, standards, quality controls, data products, sharing mechanisms.</span><span class="lang-zh">数据平台、标准体系、质量控制、数据产品、共享机制。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">New Digital Infrastructure</span><span class="lang-zh">新型数字基础设施</span></strong></td>
+                  <td>13</td>
+                  <td><span class="lang-en">Data centers, disaster recovery, networks, cloud migration, secure computing, and operations resilience.</span><span class="lang-zh">数据中心、容灾、网络、云化、安全计算和运维韧性。</span></td>
+                  <td><span class="lang-en">Deployment scale, system coverage, resilience design, security operations.</span><span class="lang-zh">部署规模、系统覆盖、韧性设计、安全运营。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Core Technology Application</span><span class="lang-zh">关键核心技术应用</span></strong></td>
+                  <td>7</td>
+                  <td><span class="lang-en">Key technologies, industry-research collaboration, distributed architecture, cloud platforms, and technology value creation.</span><span class="lang-zh">关键技术、产学研合作、分布式架构、云平台和技术价值创造。</span></td>
+                  <td><span class="lang-en">Named systems, technical platforms, patents, collaborative R&D, deployed architecture.</span><span class="lang-zh">具名系统、技术平台、专利、联合研发、落地架构。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Digital Operating Momentum</span><span class="lang-zh">数字化经营动能</span></strong></td>
+                  <td>12</td>
+                  <td><span class="lang-en">Agile development, middle platforms, automated risk prevention, digital marketing, and operational embedding.</span><span class="lang-zh">敏捷开发、中台建设、自动化风控、数字营销和经营流程嵌入。</span></td>
+                  <td><span class="lang-en">Operating platforms, automated workflows, scenario finance, management dashboards.</span><span class="lang-zh">经营平台、自动化流程、场景金融、管理驾驶舱。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Financial Service Reengineering</span><span class="lang-zh">金融服务智慧再造</span></strong></td>
+                  <td>11</td>
+                  <td><span class="lang-en">Digital channels, service-process redesign, small-business finance, rural finance, supply-chain finance, green finance, and inclusive access.</span><span class="lang-zh">数字渠道、流程再造、小微金融、农村金融、供应链金融、绿色金融和普惠可及性。</span></td>
+                  <td><span class="lang-en">User scale, online processes, scenario coverage, certified inclusive services.</span><span class="lang-zh">用户规模、线上流程、场景覆盖、普惠服务认证。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Prudent Fintech Management</span><span class="lang-zh">金融科技审慎管理</span></strong></td>
+                  <td>11</td>
+                  <td><span class="lang-en">Supervisory technology, compliance data, risk control, technology governance, model risk, and algorithm management.</span><span class="lang-zh">监管科技、合规数据、风险控制、技术治理、模型风险和算法管理。</span></td>
+                  <td><span class="lang-en">Risk models, compliance platforms, monitoring systems, lifecycle controls.</span><span class="lang-zh">风险模型、合规平台、监测系统、全生命周期控制。</span></td>
+                </tr>
+                <tr>
+                  <td><strong><span class="lang-en">Sustainable Development Foundation</span><span class="lang-zh">可持续发展基础</span></strong></td>
+                  <td>4</td>
+                  <td><span class="lang-en">Digital talent, training, standard-setting, and implementation of technical standards.</span><span class="lang-zh">数字人才、培训、标准制定和技术标准实施。</span></td>
+                  <td><span class="lang-en">Talent programs, training systems, national or industry standards, implementation records.</span><span class="lang-zh">人才计划、培训体系、国家或行业标准、标准实施记录。</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div class="prompt-layout">
-            <article class="prompt-console">
-              <p class="eyebrow"><span class="lang-en">Scoring instruction template</span><span class="lang-zh">评分指令</span></p>
-              <h3><span class="lang-en">Instruction structure and output format</span><span class="lang-zh">评分指令与输出格式</span></h3>
-              <pre><code>system: Score financial digital capability only from the source report and the given tier definitions.
-system: fileid://&lt;file_id&gt;
-user: &lt;domain-specific scoring rubric&gt; + &lt;strict JSON output requirement&gt;
-
-model: qwen-long
-temperature: 0
-output: {"Dimension":{"Item":0},"Scoring rationale":"basis, page, section, or table location"}</code></pre>
-            </article>
-
-            <article class="prompt-rules">
-              <p class="eyebrow"><span class="lang-en">Scoring rules</span><span class="lang-zh">评分规则</span></p>
-              <h3><span class="lang-en">Constraints imposed on every item</span><span class="lang-zh">评分约束</span></h3>
-              <ul>
-                <li><span class="lang-en">Each item must receive an integer score from 0 to 5.</span><span class="lang-zh">每个指标必须给出 0 到 5 的整数分。</span></li>
-                <li><span class="lang-en">Higher tiers normally require that lower-tier conditions are also met.</span><span class="lang-zh">较高档位默认要求较低档位全部满足。</span></li>
-                <li><span class="lang-en">The scoring basis must come from the source report, preferably with page, section, paragraph, or table location.</span><span class="lang-zh">评分依据必须来自报告原文，尽量定位到页码、章节、段落或表格。</span></li>
-                <li><span class="lang-en">Weakly related digital wording or generic slogans are not used for high-tier scores.</span><span class="lang-zh">与数字化关系弱或无明确披露的内容不纳入高档位评分。</span></li>
-                <li><span class="lang-en">Institution size, industry reputation, or common knowledge cannot substitute for source disclosures.</span><span class="lang-zh">不能根据机构规模、行业常识或泛化口号推断高档位。</span></li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="prompt-anatomy">
-            <article>
-              <h3><span class="lang-en">Role and task boundary</span><span class="lang-zh">角色与任务边界</span></h3>
-              <p><span class="lang-en">The instruction asks the model to act as a financial digital capability evaluator and limits scoring to the supplied report and rubric.</span><span class="lang-zh">指令要求模型以金融数字化能力测度者的身份工作，并限定评分只能依据报告文本和给定标准。</span></p>
-            </article>
-            <article>
-              <h3><span class="lang-en">Item definitions and tier descriptions</span><span class="lang-zh">指标定义与档位说明</span></h3>
-              <p><span class="lang-en">Each prompt contains the capability item definitions and tiered requirements that translate qualitative disclosure into a 0-5 maturity score.</span><span class="lang-zh">每份提示词包含能力项定义和分级要求，把定性披露转化为 0-5 的成熟度评分。</span></p>
-            </article>
-            <article>
-              <h3><span class="lang-en">Negative and non-upgrade criteria</span><span class="lang-zh">未升档条件</span></h3>
-              <p><span class="lang-en">The instructions require a low score when evidence is absent, vague, only planned, or unrelated to the target capability item.</span><span class="lang-zh">当披露缺失、表述模糊、仅为规划或与能力项关系较弱时，指令要求保持低档位。</span></p>
-            </article>
+          <div class="contract-line">
+            <strong><span class="lang-en">Common scoring contract</span><span class="lang-zh">统一评分约束</span></strong>
+            <p><span class="lang-en">All agents use the same model setting and output structure: Qwen-Long, temperature 0, item scores from 0 to 5, source-grounded rationale, report identifier, and request identifier. Full prompt files are provided as downloadable method materials.</span><span class="lang-zh">所有智能体使用同一模型设置和输出结构：Qwen-Long、temperature 0、0-5 分项评分、基于原文的评分理由、报告标识和请求编号。完整提示词作为方法材料下载提供。</span></p>
+            <a class="text-link" href="downloads/domain-scoring-prompts.zip" download>
+              <i data-lucide="folder-archive"></i>
+              <span class="lang-en">Download domain prompt set</span>
+              <span class="lang-zh">下载分领域提示词包</span>
+            </a>
           </div>
         </div>
       </section>
 
       <section class="cases" id="cases">
-        <div class="shell">
+        <div class="shell case-study">
           <div class="section-heading">
-            <p class="eyebrow"><span class="lang-en">Detailed scoring case</span><span class="lang-zh">具体评分案例</span></p>
+            <p class="eyebrow"><span class="lang-en">Report-level example</span><span class="lang-zh">报告级示例</span></p>
             <h2><span class="lang-en">Rizhao Bank 2025 Annual Report Summary</span><span class="lang-zh">日照银行 2025 年年度报告摘要</span></h2>
             <p>
-              <span class="lang-en">This case uses one specific source report and the corresponding project scoring output. It shows how source passages, page locations, item scores, and non-upgrade conditions are linked in the measurement workflow.</span>
-              <span class="lang-zh">本案例使用一份具体来源报告及其对应的项目评分输出，展示原文位置、能力项得分和未升档条件如何连接起来。</span>
+              <span class="lang-en">The example below keeps the analysis at the level a reviewer can inspect: named institution, named report, page locations, selected capability items, and the resulting domain scores.</span>
+              <span class="lang-zh">下面的示例保留审稿人可以核查的关键信息：具体机构、具体报告、页码位置、对应能力项和能力域得分。</span>
             </p>
           </div>
 
-          <div class="case-source-grid">
-            <article class="case-source-card">
-              <span><span class="lang-en">Institution</span><span class="lang-zh">机构</span></span>
+          <div class="case-identity">
+            <div>
+              <span class="lang-en">Institution</span><span class="lang-zh">机构</span>
               <strong>Rizhao Bank Co., Ltd.</strong>
-              <p><span class="lang-en">City commercial bank in Shandong Province.</span><span class="lang-zh">山东省城市商业银行。</span></p>
-            </article>
-            <article class="case-source-card">
-              <span><span class="lang-en">Source report</span><span class="lang-zh">来源报告</span></span>
-              <strong><span class="lang-en">2025 Annual Report Summary</span><span class="lang-zh">2025 年年度报告摘要</span></strong>
-              <p><span class="lang-en">Official PDF, 34 pages, extracted with page markers for checking.</span><span class="lang-zh">官网 PDF，共 34 页，已按页码抽取文本用于核对。</span></p>
-            </article>
-            <article class="case-source-card">
-              <span><span class="lang-en">Scoring record</span><span class="lang-zh">评分记录</span></span>
-              <strong>e59ef0efe12c5379</strong>
-              <p><span class="lang-en">file_id: file-fe-7009f382838c433996257f0a.</span><span class="lang-zh">文件 ID：file-fe-7009f382838c433996257f0a。</span></p>
-            </article>
-            <article class="case-source-card">
-              <span><span class="lang-en">Source file</span><span class="lang-zh">来源文件</span></span>
-              <a class="text-link" href="downloads/rizhao-bank-2025-annual-report-summary.pdf" download>
-                <i data-lucide="file-text"></i>
-                <span class="lang-en">Download report PDF</span>
-                <span class="lang-zh">下载案例年报</span>
-              </a>
-              <p><span class="lang-en">The PDF is included so readers can check page references directly.</span><span class="lang-zh">页面保留 PDF 下载，便于直接核对页码和原文。</span></p>
-            </article>
-          </div>
-
-          <div class="case-analysis-grid">
-            <article class="case-card">
-              <span><span class="lang-en">Pages 13-14</span><span class="lang-zh">第 13-14 页</span></span>
-              <h3><span class="lang-en">Strategic and service-platform evidence</span><span class="lang-zh">战略与服务平台依据</span></h3>
-              <dl>
-                <dt><span class="lang-en">Source passages</span><span class="lang-zh">原文要点</span></dt>
-                <dd><span class="lang-en">The report describes four lines of digitalization, four financial service systems, the upgraded "631" supply-chain finance system, and the "Yidang Life" platform serving 1.67 million residents.</span><span class="lang-zh">报告披露“四个数字化”、四大金融服务体系、升级“631”供应链金融服务体系，并上线“宜当生活”平台服务全省 167 万居民。</span></dd>
-                <dt><span class="lang-en">Mapped items</span><span class="lang-zh">对应能力项</span></dt>
-                <dd><span class="lang-en">Data development planning: 4/5; data sharing: 3/5; online service channel: 5/5.</span><span class="lang-zh">数据发展规划 4/5；数据共享 3/5；线上服务渠道 5/5。</span></dd>
-                <dt><span class="lang-en">Reasoning</span><span class="lang-zh">判定逻辑</span></dt>
-                <dd><span class="lang-en">The disclosures move beyond a general strategy statement because they identify named platforms, service systems, and usage scale.</span><span class="lang-zh">这些披露不只是战略口号，而是给出了具体平台、服务体系和使用规模。</span></dd>
-              </dl>
-            </article>
-
-            <article class="case-card">
-              <span><span class="lang-en">Pages 23-24</span><span class="lang-zh">第 23-24 页</span></span>
-              <h3><span class="lang-en">Risk-control and security evidence</span><span class="lang-zh">风控与安全依据</span></h3>
-              <dl>
-                <dt><span class="lang-en">Source passages</span><span class="lang-zh">原文要点</span></dt>
-                <dd><span class="lang-en">The report refers to big data, risk models, intelligent risk-control systems, a smart compliance-management platform, host-security upgrades, application hardening, penetration testing, and classified protection assessment.</span><span class="lang-zh">报告披露大数据、风险模型与智能风控系统，智慧合规管理平台，以及主机安全、应用加固、渗透性测试和等保测评。</span></dd>
-                <dt><span class="lang-en">Mapped items</span><span class="lang-zh">对应能力项</span></dt>
-                <dd><span class="lang-en">Data quality: 3/5; data security: 4/5; infrastructure security protection: 3/5.</span><span class="lang-zh">数据质量 3/5；数据安全 4/5；基础设施安全防护 3/5。</span></dd>
-                <dt><span class="lang-en">Reasoning</span><span class="lang-zh">判定逻辑</span></dt>
-                <dd><span class="lang-en">The score is supported by named systems and operating controls rather than by a generic claim of stronger risk management.</span><span class="lang-zh">评分依据是具体系统和运行控制，而不是笼统的“加强风险管理”。</span></dd>
-              </dl>
-            </article>
-
-            <article class="case-card">
-              <span><span class="lang-en">Page 27</span><span class="lang-zh">第 27 页</span></span>
-              <h3><span class="lang-en">Green and inclusive digital finance evidence</span><span class="lang-zh">绿色与普惠数字金融依据</span></h3>
-              <dl>
-                <dt><span class="lang-en">Source passages</span><span class="lang-zh">原文要点</span></dt>
-                <dd><span class="lang-en">The report describes a digital green-finance service system, online green-bill processing, an emission-rights pledge supply-chain bill, a dynamic carbon-account case, 175 inclusive-finance scenarios, and 1.67 million users of the digital livelihood platform.</span><span class="lang-zh">报告披露数字绿色金融服务体系、绿色票据全线上流程、排污权抵押供应链票据、动态碳账户案例、175 个普惠金融场景和 167 万民生平台用户。</span></dd>
-                <dt><span class="lang-en">Mapped items</span><span class="lang-zh">对应能力项</span></dt>
-                <dd><span class="lang-en">Data application: 5/5; green finance digital service: 3/5; small-business service capability: 4/5.</span><span class="lang-zh">数据应用 5/5；绿色金融数字服务 3/5；小微服务能力 4/5。</span></dd>
-                <dt><span class="lang-en">Non-upgrade condition</span><span class="lang-zh">未升档条件</span></dt>
-                <dd><span class="lang-en">The green-finance item is not upgraded to 4/5 because the report does not describe a green knowledge graph or full-lifecycle green-product management.</span><span class="lang-zh">绿色金融项未升至 4/5，因为报告未披露绿色知识图谱或绿色产品全生命周期管理。</span></dd>
-              </dl>
-            </article>
-
-            <article class="case-card">
-              <span><span class="lang-en">Pages 27-28</span><span class="lang-zh">第 27-28 页</span></span>
-              <h3><span class="lang-en">Accessibility and service-quality evidence</span><span class="lang-zh">适老与服务质效依据</span></h3>
-              <dl>
-                <dt><span class="lang-en">Source passages</span><span class="lang-zh">原文要点</span></dt>
-                <dd><span class="lang-en">The report describes online-offline training and outreach, 1,174 consumer-education activities, 529,400 customers reached, 22 branches certified for elderly-friendly services, one branch certified for accessibility, and an elderly-service manual.</span><span class="lang-zh">报告披露线上线下培训与宣传、1,174 次金融教育活动、触及 52.94 万客户、新增 22 家适老服务认证网点、1 家无障碍环境认证网点，并修订适老服务手册。</span></dd>
-                <dt><span class="lang-en">Mapped items</span><span class="lang-zh">对应能力项</span></dt>
-                <dd><span class="lang-en">Special-group digital service: 4/5; branch accessibility service: 5/5.</span><span class="lang-zh">特殊客群数字服务 4/5；网点无障碍服务 5/5。</span></dd>
-                <dt><span class="lang-en">Reasoning</span><span class="lang-zh">判定逻辑</span></dt>
-                <dd><span class="lang-en">The evidence combines certified outlets, service-process changes, and a formal service manual, so it is stronger than a general service-improvement statement.</span><span class="lang-zh">依据同时包含认证网点、服务流程优化和正式服务手册，强于一般服务改善表述。</span></dd>
-              </dl>
-            </article>
-          </div>
-
-          <article class="formula-card case-formula">
-            <p class="eyebrow"><span class="lang-en">Case score summary</span><span class="lang-zh">案例评分摘要</span></p>
-            <h3><span class="lang-en">Selected domain scores from this report-level run</span><span class="lang-zh">该报告级评分中的部分能力域结果</span></h3>
-            <div class="case-score-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th><span class="lang-en">Domain</span><span class="lang-zh">能力域</span></th>
-                    <th><span class="lang-en">Item scores</span><span class="lang-zh">分项得分</span></th>
-                    <th><span class="lang-en">Normalized score</span><span class="lang-zh">标准化得分</span></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="lang-en">Data Factor Potential</span><span class="lang-zh">数据要素潜能释放</span></td>
-                    <td>4, 4, 4, 3, 3, 5, 3, 4</td>
-                    <td>0.750</td>
-                  </tr>
-                  <tr>
-                    <td><span class="lang-en">Financial Service Reengineering</span><span class="lang-zh">金融服务智慧再造</span></td>
-                    <td>3, 4, 3, 5, 4, 4, 1, 4, 3, 4, 5</td>
-                    <td>0.727</td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
-            <p><span class="lang-en">The domain index equals the sum of item scores divided by the maximum possible score in that domain. The selected examples show both high-scoring items and items that are intentionally not upgraded when the report lacks the required technical detail.</span><span class="lang-zh">能力域指数等于本域实际分数之和除以该域最高可能分数。上述案例同时展示了高分项和因缺少必要技术细节而未升档的项目。</span></p>
-            <div class="formula">Domain = Σ item score / (5 × item count)</div>
-            <div class="formula">Overall = Σ 75 item scores / (5 × 75)</div>
-            <p class="fine-print"><span class="lang-en">The case uses the project scoring output for result_id e59ef0efe12c5379. It is presented as a report-level demonstration; public index files still report institution-year aggregates.</span><span class="lang-zh">本案例使用 result_id 为 e59ef0efe12c5379 的项目评分输出。这里展示的是报告级示例，公开指数文件仍发布机构-年份汇总结果。</span></p>
-          </article>
+            <div>
+              <span class="lang-en">Source report</span><span class="lang-zh">来源报告</span>
+              <strong><span class="lang-en">2025 Annual Report Summary, official PDF, 34 pages</span><span class="lang-zh">2025 年年度报告摘要，官网 PDF，共 34 页</span></strong>
+            </div>
+            <div>
+              <span class="lang-en">Scoring record</span><span class="lang-zh">评分记录</span>
+              <strong>result_id: e59ef0efe12c5379</strong>
+            </div>
+            <a class="text-link" href="downloads/rizhao-bank-2025-annual-report-summary.pdf" download>
+              <i data-lucide="file-text"></i>
+              <span class="lang-en">Download source report</span>
+              <span class="lang-zh">下载来源报告</span>
+            </a>
+          </div>
+
+          <div class="case-evidence">
+            <table>
+              <thead>
+                <tr>
+                  <th><span class="lang-en">Report location</span><span class="lang-zh">报告位置</span></th>
+                  <th><span class="lang-en">Disclosure used for scoring</span><span class="lang-zh">用于评分的披露内容</span></th>
+                  <th><span class="lang-en">Mapped items</span><span class="lang-zh">对应能力项</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>pp. 13-14</td>
+                  <td><span class="lang-en">Four lines of digitalization, four financial service systems, the upgraded "631" supply-chain finance system, and the "Yidang Life" platform serving 1.67 million residents.</span><span class="lang-zh">“四个数字化”、四大金融服务体系、升级“631”供应链金融服务体系，以及服务 167 万居民的“宜当生活”平台。</span></td>
+                  <td><span class="lang-en">Data development planning 4/5; data sharing 3/5; online service channel 5/5.</span><span class="lang-zh">数据发展规划 4/5；数据共享 3/5；线上服务渠道 5/5。</span></td>
+                </tr>
+                <tr>
+                  <td>pp. 23-24</td>
+                  <td><span class="lang-en">Big data, risk models, intelligent risk-control systems, smart compliance management, host-security upgrades, application hardening, penetration testing, and classified protection assessment.</span><span class="lang-zh">大数据、风险模型、智能风控系统、智慧合规管理、主机安全升级、应用加固、渗透性测试和等保测评。</span></td>
+                  <td><span class="lang-en">Data quality 3/5; data security 4/5; infrastructure security protection 3/5.</span><span class="lang-zh">数据质量 3/5；数据安全 4/5；基础设施安全防护 3/5。</span></td>
+                </tr>
+                <tr>
+                  <td>p. 27</td>
+                  <td><span class="lang-en">Digital green-finance service system, online green-bill processing, emission-rights pledge supply-chain bill, dynamic carbon-account case, 175 inclusive-finance scenarios, and 1.67 million livelihood-platform users.</span><span class="lang-zh">数字绿色金融服务体系、绿色票据全线上流程、排污权抵押供应链票据、动态碳账户案例、175 个普惠金融场景和 167 万民生平台用户。</span></td>
+                  <td><span class="lang-en">Data application 5/5; green finance digital service 3/5; small-business service capability 4/5.</span><span class="lang-zh">数据应用 5/5；绿色金融数字服务 3/5；小微服务能力 4/5。</span></td>
+                </tr>
+                <tr>
+                  <td>pp. 27-28</td>
+                  <td><span class="lang-en">Online-offline outreach, 1,174 consumer-education activities, 529,400 customers reached, 22 elderly-friendly branches, one accessibility-certified branch, and a formal elderly-service manual.</span><span class="lang-zh">线上线下宣传、1,174 次金融教育活动、触及 52.94 万客户、22 家适老服务认证网点、1 家无障碍环境认证网点和正式适老服务手册。</span></td>
+                  <td><span class="lang-en">Special-group digital service 4/5; branch accessibility service 5/5.</span><span class="lang-zh">特殊客群数字服务 4/5；网点无障碍服务 5/5。</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="case-score-summary">
+            <div>
+              <span class="lang-en">Data Factor Potential</span><span class="lang-zh">数据要素潜能释放</span>
+              <strong>0.750</strong>
+              <p>4, 4, 4, 3, 3, 5, 3, 4</p>
+            </div>
+            <div>
+              <span class="lang-en">Financial Service Reengineering</span><span class="lang-zh">金融服务智慧再造</span>
+              <strong>0.727</strong>
+              <p>3, 4, 3, 5, 4, 4, 1, 4, 3, 4, 5</p>
+            </div>
+            <p class="formula-plain">Domain index = sum of item scores / maximum possible item score</p>
+          </div>
         </div>
       </section>
 
       <section class="validation" id="validation">
         <div class="shell">
           <div class="section-heading">
-            <p class="eyebrow"><span class="lang-en">Quality checks and validity analysis</span><span class="lang-zh">质量控制与有效性检验</span></p>
-            <h2><span class="lang-en">Quality control and external validation</span><span class="lang-zh">质量控制与外部验证</span></h2>
+            <p class="eyebrow"><span class="lang-en">Validity evidence</span><span class="lang-zh">有效性证据</span></p>
+            <h2><span class="lang-en">Checks aligned with the main measurement concerns</span><span class="lang-zh">围绕主要测度关切的检验</span></h2>
             <p>
-              <span class="lang-en">The project uses structured checks, manual spot checks, fintech patent outcomes, keyword-based benchmarks, and item-level remeasurement to identify potential bias from disclosure intensity and automated scoring errors.</span>
-              <span class="lang-zh">为降低披露强度差异和自动评分误差的影响，本项目结合结构化校验、人工抽样、金融科技专利、关键词法对照和单项重测识别潜在偏差。</span>
+              <span class="lang-en">The website emphasizes the validation exercises that speak directly to measurement quality: human-coded benchmarks, external non-textual outcomes, alternative text measures, and a policy shock tied to digital infrastructure and payment capability.</span>
+              <span class="lang-zh">网页重点展示与测度质量直接相关的检验：人工编码基准、外部非文本结果、替代文本测度，以及与数字基础设施和支付能力相关的政策冲击。</span>
             </p>
           </div>
 
-          <div class="validation-grid">
-            <article class="validation-card">
-              <i data-lucide="database"></i>
-              <h3><span class="lang-en">Structured checks</span><span class="lang-zh">结构化校验</span></h3>
-              <p><span class="lang-en">The main score table and file index each contain 8,804 rows. Rationale cells are non-empty in 70,064 of 70,432 report-domain cells, a coverage rate of 99.48%.</span><span class="lang-zh">主表和文件索引均为 8,804 行；原因单元格 70,064 / 70,432 非空，覆盖率 99.48%。</span></p>
+          <div class="validation-summary">
+            <article>
+              <i data-lucide="users-round"></i>
+              <strong>92.5%</strong>
+              <span><span class="lang-en">manual benchmark accuracy</span><span class="lang-zh">人工基准准确率</span></span>
+              <p><span class="lang-en">Six researchers independently scored 200 outputs; the system is evaluated against the modal human benchmark.</span><span class="lang-zh">六名研究人员独立评分 200 个输出，以众数人类评分作为基准比较系统结果。</span></p>
             </article>
-            <article class="validation-card">
-              <i data-lucide="clipboard-check"></i>
-              <h3><span class="lang-en">Manual spot checks</span><span class="lang-zh">人工抽样校验</span></h3>
-              <p><span class="lang-en">The spot-check design covers high, medium, and low scores; banks, securities firms, and insurers; and both annual reports and CSR reports.</span><span class="lang-zh">覆盖高分、中分、低分，覆盖银行、证券、保险，以及年报和社会责任报告。</span></p>
-            </article>
-            <article class="validation-card">
-              <i data-lucide="scan-search"></i>
-              <h3><span class="lang-en">Risk-expression review</span><span class="lang-zh">可疑表述核查</span></h3>
-              <p><span class="lang-en">Records containing expressions similar to "inferred", "not directly disclosed", or "close to the requirement" are flagged, especially when the associated score is high.</span><span class="lang-zh">对“推断、未直接、接近”等高风险表述做二次标记，优先检查高分且含推断性理由的样本。</span></p>
-            </article>
-            <article class="validation-card">
-              <i data-lucide="flask-conical"></i>
-              <h3><span class="lang-en">Item-level remeasurement</span><span class="lang-zh">单项指标重测</span></h3>
-              <p><span class="lang-en">For the data-standard item, 7,214 records were remeasured and fully parsed, with retry and manual override records retained.</span><span class="lang-zh">针对 2-4 数据标准做全量重测，7,214 条记录最终全部解析完成，并保留两轮补跑和人工覆盖记录。</span></p>
-            </article>
-            <article class="validation-card">
+            <article>
               <i data-lucide="badge-check"></i>
-              <h3><span class="lang-en">External criterion</span><span class="lang-zh">外部效标检验</span></h3>
-              <p><span class="lang-en">The fintech patent validation sample matches 41 banks and 384 bank-year observations. Annual patent flow and the index mean have a correlation of 0.855.</span><span class="lang-zh">金融科技专利样本匹配 41 家银行、384 个银行-年份观测；年度专利流量与指数均值相关系数为 0.855。</span></p>
+              <strong>0.855</strong>
+              <span><span class="lang-en">patent-index correlation</span><span class="lang-zh">专利-指数相关系数</span></span>
+              <p><span class="lang-en">The fintech patent validation sample covers 41 banks and 384 bank-year observations.</span><span class="lang-zh">金融科技专利验证样本覆盖 41 家银行和 384 个银行-年份观测。</span></p>
             </article>
-            <article class="validation-card">
-              <i data-lucide="git-compare-arrows"></i>
-              <h3><span class="lang-en">Keyword benchmark</span><span class="lang-zh">关键词法基准</span></h3>
-              <p><span class="lang-en">A traditional dictionary-based measure is retained as an independent benchmark, including dictionary construction, OCR status, low-text-quality flags, and frequency-index generation.</span><span class="lang-zh">传统关键词法作为独立基准，记录词典、OCR、低文本质量标记和频率指数生成过程。</span></p>
+            <article>
+              <i data-lucide="landmark"></i>
+              <strong>0.046</strong>
+              <span><span class="lang-en">CBDC pilot estimate</span><span class="lang-zh">数字人民币试点估计值</span></span>
+              <p><span class="lang-en">The difference-in-differences estimate is positive for the full financial-institution sample and concentrated among banks.</span><span class="lang-zh">双重差分估计在全样本中为正，且主要集中于商业银行样本。</span></p>
             </article>
           </div>
 
-          <article class="validation-note">
-            <h3><span class="lang-en">Scope of interpretation</span><span class="lang-zh">适用边界</span></h3>
-            <p>
-              <span class="lang-en">The index measures digital capability information disclosed in public texts. It does not equate slogan-like statements with actual capability, and it does not interpret correlations as strong causal evidence. External criteria and alternative methods supplement, rather than replace, report-level scoring bases.</span>
-              <span class="lang-zh">指数测量的是公开披露文本中的数字化能力信息，不把口号式表述等同于真实能力，也不把相关性结果表述为强因果结论。外部效标和替代方法用于增强有效性，而不是替代报告级评分依据。</span>
-            </p>
-          </article>
+          <div class="validation-table-wrap">
+            <table class="validation-table">
+              <thead>
+                <tr>
+                  <th><span class="lang-en">Validation question</span><span class="lang-zh">检验问题</span></th>
+                  <th><span class="lang-en">Evidence shown</span><span class="lang-zh">展示证据</span></th>
+                  <th><span class="lang-en">Why it matters</span><span class="lang-zh">意义</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="lang-en">Can the workflow reproduce item-level judgments?</span><span class="lang-zh">流程能否支撑分项判断？</span></td>
+                  <td><span class="lang-en">Source file mapping, request identifiers, structured score outputs, and report-level rationales.</span><span class="lang-zh">来源文件映射、请求编号、结构化得分输出和报告级评分理由。</span></td>
+                  <td><span class="lang-en">Connects each reported score to a concrete document and scoring run.</span><span class="lang-zh">将每个分数连接到具体文档和具体评分记录。</span></td>
+                </tr>
+                <tr>
+                  <td><span class="lang-en">Does the measure exceed a simple text-frequency proxy?</span><span class="lang-zh">是否优于简单文本频率指标？</span></td>
+                  <td><span class="lang-en">Dictionary-based benchmark retained as an alternative measure for comparison.</span><span class="lang-zh">保留传统关键词法指标，作为替代文本测度进行比较。</span></td>
+                  <td><span class="lang-en">Separates semantic capability scoring from word-count intensity.</span><span class="lang-zh">区分语义能力评分与词频强度。</span></td>
+                </tr>
+                <tr>
+                  <td><span class="lang-en">Does the index correspond to non-textual digitalization outcomes?</span><span class="lang-zh">指数是否对应非文本数字化结果？</span></td>
+                  <td><span class="lang-en">Fintech patent outcomes and digital renminbi pilot response.</span><span class="lang-zh">金融科技专利结果和数字人民币试点响应。</span></td>
+                  <td><span class="lang-en">Provides external checks beyond annual-report wording.</span><span class="lang-zh">提供超出年报措辞本身的外部检验。</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
       <section class="download" id="download">
-        <div class="shell download-grid">
+        <div class="shell resource-downloads">
           <div class="section-heading">
             <p class="eyebrow"><span class="lang-en">Downloads</span><span class="lang-zh">数据下载</span></p>
-            <h2><span class="lang-en">Public data, scoring rules, and source material</span><span class="lang-zh">公开数据、评分规则与来源材料</span></h2>
+            <h2><span class="lang-en">Materials that support the measurement design</span><span class="lang-zh">支撑测度设计的材料</span></h2>
             <p>
-              <span class="lang-en">The workbook reports the public institution-year index. The additional files document the regulatory reference, operational scoring sheet, domain prompt set, and the report used in the worked example.</span>
-              <span class="lang-zh">公开版工作簿发布机构-年份指数；其余文件补充提供监管指引、项目评分表、分领域提示词包和案例年报。</span>
+              <span class="lang-en">The page foregrounds the files most useful for evaluating the construction of the index: the regulatory guideline, scoring sheet, prompt set, public workbook, and case source report.</span>
+              <span class="lang-zh">本页重点提供最有助于理解指数构建的文件：监管指引、评分标准表、提示词包、公开指数工作簿和案例来源报告。</span>
             </p>
           </div>
-          <a class="download-card" href="downloads/financial-digital-capability-maturity-guidelines.pdf" download>
-            <i data-lucide="file-text"></i>
-            <strong><span class="lang-en">PBOC Guideline</span><span class="lang-zh">央行能力指引</span></strong>
-            <span><span class="lang-en">Financial digital capability maturity guideline, PDF</span><span class="lang-zh">金融数字化能力成熟度指引 PDF</span></span>
-          </a>
-          <a class="download-card" href="downloads/financial-digital-scoring-standard.xlsx" download>
-            <i data-lucide="clipboard-list"></i>
-            <strong><span class="lang-en">Scoring Sheet</span><span class="lang-zh">评分标准表</span></strong>
-            <span><span class="lang-en">Project scoring rubric translated into measurable items</span><span class="lang-zh">将能力要求转换为可评分条目的项目表格</span></span>
-          </a>
-          <a class="download-card" href="downloads/cfdci-public-index.xlsx" download>
-            <i data-lucide="file-spreadsheet"></i>
-            <strong><span class="lang-en">Public Excel</span><span class="lang-zh">公开版 Excel</span></strong>
-            <span><span class="lang-en">Chinese fields and print-ready worksheets</span><span class="lang-zh">保留中文字段和打印版工作表</span></span>
-          </a>
-          <a class="download-card" href="downloads/domain-scoring-prompts.zip" download>
-            <i data-lucide="folder-archive"></i>
-            <strong><span class="lang-en">Prompt Set</span><span class="lang-zh">提示词包</span></strong>
-            <span><span class="lang-en">Eight domain prompt files and score-format instructions</span><span class="lang-zh">八个能力域提示词及评分格式要求</span></span>
-          </a>
-          <a class="download-card" href="downloads/rizhao-bank-2025-annual-report-summary.pdf" download>
-            <i data-lucide="book-open-text"></i>
-            <strong><span class="lang-en">Case Report</span><span class="lang-zh">案例年报</span></strong>
-            <span><span class="lang-en">Rizhao Bank 2025 Annual Report Summary used below</span><span class="lang-zh">下方案例使用的日照银行 2025 年年度报告摘要</span></span>
-          </a>
-          <a class="download-card" href="data/public-index.csv" download>
-            <i data-lucide="table"></i>
-            <strong><span class="lang-en">Frontend CSV</span><span class="lang-zh">前端 CSV</span></strong>
-            <span><span class="lang-en">Institution-year records, UTF-8 encoded</span><span class="lang-zh">机构-年份明细，UTF-8 编码</span></span>
-          </a>
-          <a class="download-card" href="data/summary.json" download>
-            <i data-lucide="braces"></i>
-            <strong><span class="lang-en">Summary JSON</span><span class="lang-zh">摘要 JSON</span></strong>
-            <span><span class="lang-en">Coverage, years, and domain metadata</span><span class="lang-zh">覆盖范围、年份和能力域元数据</span></span>
-          </a>
+          <div class="resource-list">
+            <a href="downloads/financial-digital-capability-maturity-guidelines.pdf" download>
+              <i data-lucide="file-text"></i>
+              <strong><span class="lang-en">PBOC maturity guideline</span><span class="lang-zh">央行成熟度指引</span></strong>
+              <span><span class="lang-en">Regulatory framework for the eight domains, 24 subdomains, and 75 capability items.</span><span class="lang-zh">八个能力域、24 个能力子域和 75 个能力项的监管框架来源。</span></span>
+            </a>
+            <a href="downloads/financial-digital-scoring-standard.xlsx" download>
+              <i data-lucide="clipboard-list"></i>
+              <strong><span class="lang-en">Operational scoring sheet</span><span class="lang-zh">项目评分标准表</span></strong>
+              <span><span class="lang-en">Item-level scoring rubric used to translate the guideline into measurable fields.</span><span class="lang-zh">将指引转换为可测字段的分项评分表。</span></span>
+            </a>
+            <a href="downloads/domain-scoring-prompts.zip" download>
+              <i data-lucide="folder-archive"></i>
+              <strong><span class="lang-en">Domain prompt set</span><span class="lang-zh">分领域提示词包</span></strong>
+              <span><span class="lang-en">Prompt files for the eight domain-specific scoring agents.</span><span class="lang-zh">八个分领域评分智能体使用的提示词文件。</span></span>
+            </a>
+            <a href="downloads/cfdci-public-index.xlsx" download>
+              <i data-lucide="file-spreadsheet"></i>
+              <strong><span class="lang-en">Public index workbook</span><span class="lang-zh">公开版指数工作簿</span></strong>
+              <span><span class="lang-en">Institution-year index panel and domain-level scores.</span><span class="lang-zh">机构-年份指数面板和能力域得分。</span></span>
+            </a>
+            <a href="downloads/rizhao-bank-2025-annual-report-summary.pdf" download>
+              <i data-lucide="book-open-text"></i>
+              <strong><span class="lang-en">Case source report</span><span class="lang-zh">案例来源报告</span></strong>
+              <span><span class="lang-en">Rizhao Bank 2025 Annual Report Summary used in the worked example.</span><span class="lang-zh">用于报告级示例的日照银行 2025 年年度报告摘要。</span></span>
+            </a>
+          </div>
         </div>
       </section>
 

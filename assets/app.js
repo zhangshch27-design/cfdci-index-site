@@ -16,7 +16,7 @@
       records: "records",
       noData: "No data",
       filteredCount: (count, metric) => `${formatInteger(count)} records · ${metric}`,
-      heroDelta: (year, delta) => `vs. ${year} ${formatDelta(delta)}`,
+      heroDelta: (year) => `Latest public year: ${year}`,
       topScore: (metric, score) => `${metric} ${score}`,
       trendInstitution: "Matched institution series",
       trendSector: "Means by sector",
@@ -110,7 +110,7 @@
       records: "条记录",
       noData: "无数据",
       filteredCount: (count, metric) => `${formatInteger(count)} 条记录 · ${metric}`,
-      heroDelta: (year, delta) => `较 ${year} 年 ${formatDelta(delta)}`,
+      heroDelta: (year) => `最新公开年份：${year}`,
       topScore: (metric, score) => `${metric} ${score}`,
       trendInstitution: "匹配机构年度序列",
       trendSector: "按机构大类展示均值",
@@ -204,7 +204,7 @@
 
   function hydrateHero() {
     $("#heroMean").textContent = formatScore(meta.latestMean);
-    $("#heroDelta").textContent = t("heroDelta", meta.previousYear, meta.latestYoY);
+    $("#heroDelta").textContent = t("heroDelta", meta.latestYear);
     $("#institutionCount").textContent = formatInteger(meta.institutionCount);
     $("#rowCount").textContent = formatInteger(meta.rowCount);
     $("#geoCount").textContent = formatInteger(meta.provinceCount);
