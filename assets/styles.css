@@ -1,0 +1,883 @@
+:root {
+  color-scheme: light;
+  --paper: #f5f1e8;
+  --paper-strong: #fffcf5;
+  --paper-soft: #eeede4;
+  --ink: #102326;
+  --muted: #5d6968;
+  --faint: #8c9793;
+  --line: #ddd5c8;
+  --teal: #0f7b78;
+  --teal-dark: #07565c;
+  --copper: #b45b32;
+  --blue: #2f6f98;
+  --green: #3d8c72;
+  --shadow: 0 18px 48px rgba(45, 56, 48, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background-color: #edf1e9;
+  background-image:
+    linear-gradient(rgba(16, 35, 38, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 35, 38, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  font-family:
+    "Inter",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+
+body,
+button,
+input,
+select {
+  font: inherit;
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+select,
+input {
+  color: var(--ink);
+}
+
+.shell {
+  width: min(1220px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1240px, calc(100% - 32px));
+  margin: 16px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(221, 213, 200, 0.92);
+  border-radius: 8px;
+  background: rgba(255, 252, 245, 0.92);
+  box-shadow: 0 14px 34px rgba(45, 56, 48, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  display: grid;
+  gap: 2px;
+  min-width: 192px;
+}
+
+.brand span,
+.eyebrow,
+.card-kicker,
+.control-label {
+  color: var(--teal);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.brand strong {
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 1.12rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-links a {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #4d5a58;
+  font-size: 0.96rem;
+}
+
+.nav-links a:hover {
+  background: #eef4ef;
+  color: var(--teal-dark);
+}
+
+.hero,
+.explorer,
+.method,
+.download,
+.citation,
+.signal-band {
+  padding: 72px 0;
+  scroll-margin-top: 118px;
+}
+
+.hero {
+  padding-top: 38px;
+  padding-bottom: 36px;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background: rgba(245, 241, 232, 0.8);
+  border-bottom: 1px solid rgba(221, 213, 200, 0.72);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.92fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.citation h2 {
+  margin: 0;
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-weight: 900;
+  line-height: 1.04;
+}
+
+.hero-copy h1 {
+  max-width: 720px;
+  margin-top: 14px;
+  font-size: 4.2rem;
+}
+
+.lead {
+  max-width: 700px;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 1.14rem;
+  line-height: 1.9;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.button,
+.text-link,
+.download-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.button svg,
+.text-link svg,
+.download-card svg,
+.search-box svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.button.primary {
+  color: #fffdf7;
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+.button.secondary {
+  color: var(--teal-dark);
+  background: var(--paper-strong);
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric-card,
+.summary-card,
+.signal-card,
+.chart-panel,
+.ranking-panel,
+.method-card,
+.download-card,
+.citation-box {
+  border: 1px solid rgba(221, 213, 200, 0.92);
+  border-radius: 8px;
+  background: rgba(255, 252, 245, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.metric-card {
+  min-height: 132px;
+  padding: 20px;
+}
+
+.metric-card.highlight {
+  grid-column: 1 / -1;
+  min-height: 230px;
+  color: #effaf8;
+  background: var(--teal-dark);
+  border-color: rgba(7, 86, 92, 0.3);
+}
+
+.metric-card.highlight .card-kicker {
+  color: #bfe8df;
+}
+
+.metric-card.highlight span,
+.metric-card.highlight p {
+  color: #d8f0eb;
+}
+
+.metric-card strong,
+.summary-card strong {
+  display: block;
+  margin-top: 12px;
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.metric-card.highlight strong {
+  font-size: 4.5rem;
+}
+
+.metric-card span,
+.summary-card span,
+.signal-card span,
+.download-card span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.metric-card p {
+  margin: 22px 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.signal-band {
+  padding-top: 42px;
+  background: rgba(238, 237, 228, 0.76);
+  border-bottom: 1px solid rgba(221, 213, 200, 0.72);
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.section-heading.compact {
+  margin-bottom: 20px;
+}
+
+.section-heading h2,
+.citation h2 {
+  margin-top: 10px;
+  font-size: 2.7rem;
+}
+
+.section-heading p:not(.eyebrow) {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.signal-board {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.signal-card {
+  position: relative;
+  min-height: 212px;
+  padding: 20px 18px;
+  overflow: hidden;
+}
+
+.signal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--accent);
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--accent);
+  font-weight: 800;
+}
+
+.signal-card h3 {
+  min-height: 48px;
+  margin: 18px 0 8px;
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 1.14rem;
+  line-height: 1.35;
+}
+
+.signal-card p {
+  min-height: 42px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.signal-card strong {
+  display: block;
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.explorer {
+  background: rgba(245, 241, 232, 0.82);
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr)) minmax(260px, 1.4fr);
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.metric-switch {
+  grid-column: 1 / -1;
+}
+
+.control-block {
+  display: grid;
+  gap: 8px;
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.segment-button,
+select,
+input {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-strong);
+}
+
+.segment-button {
+  padding: 0 12px;
+  cursor: pointer;
+  color: #4f5d5a;
+}
+
+.segment-button.is-active {
+  color: #fffdf7;
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+select,
+input {
+  width: 100%;
+  padding: 0 12px;
+  outline: none;
+}
+
+select:focus,
+input:focus,
+.segment-button:focus-visible,
+.button:focus-visible,
+.text-link:focus-visible,
+.download-card:focus-visible {
+  outline: 3px solid rgba(15, 123, 120, 0.28);
+  outline-offset: 2px;
+}
+
+.search-box {
+  position: relative;
+  display: block;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: var(--faint);
+}
+
+.search-box input {
+  padding-left: 38px;
+}
+
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.summary-card {
+  min-height: 150px;
+  padding: 20px;
+}
+
+.summary-card strong {
+  font-size: 1.75rem;
+  line-height: 1.22;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.chart-panel {
+  min-width: 0;
+  padding: 18px;
+}
+
+.chart-panel.wide {
+  grid-column: span 2;
+}
+
+.chart-panel header,
+.ranking-panel header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.chart-panel h3,
+.ranking-panel h3,
+.method-card h3,
+.citation-box h3 {
+  margin: 0;
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 1.24rem;
+}
+
+.chart-panel header span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.chart {
+  width: 100%;
+  height: 360px;
+}
+
+.chart-panel:not(.wide) .chart {
+  height: 330px;
+}
+
+.ranking-panel {
+  margin-top: 14px;
+  padding: 18px;
+}
+
+.text-link {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: #f7f4ec;
+  font-weight: 800;
+}
+
+.ranking-panel .eyebrow {
+  margin: 0 0 8px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 840px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+td:first-child,
+td:last-child {
+  font-weight: 900;
+}
+
+tbody tr:hover {
+  background: #f3f0e8;
+}
+
+.method {
+  background: rgba(238, 237, 228, 0.72);
+  border-top: 1px solid rgba(221, 213, 200, 0.72);
+  border-bottom: 1px solid rgba(221, 213, 200, 0.72);
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
+  gap: 24px 34px;
+  align-items: start;
+}
+
+.method-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  grid-column: 1 / -1;
+}
+
+.method-card {
+  min-height: 180px;
+  padding: 20px;
+}
+
+.method-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  color: #fffdf7;
+  background: var(--copper);
+  font-weight: 900;
+}
+
+.method-card h3 {
+  margin-top: 20px;
+}
+
+.method-card p,
+.citation-box p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.paper-figure {
+  align-self: stretch;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-strong);
+  box-shadow: var(--shadow);
+}
+
+.paper-figure img {
+  width: 100%;
+  aspect-ratio: 2.42 / 1;
+  object-fit: cover;
+  border: 1px solid #e8e1d5;
+  border-radius: 8px;
+}
+
+.paper-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.download-card {
+  min-height: 190px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px;
+  color: var(--ink);
+}
+
+.download-card svg {
+  width: 28px;
+  height: 28px;
+  color: var(--teal);
+}
+
+.download-card strong {
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 1.45rem;
+}
+
+.download-card:hover,
+.text-link:hover,
+.button.secondary:hover {
+  border-color: rgba(15, 123, 120, 0.42);
+  background: #f0f6f1;
+}
+
+.citation {
+  background: rgba(245, 241, 232, 0.82);
+}
+
+.citation-grid {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.citation-box {
+  padding: 24px;
+}
+
+.citation-box h3 {
+  font-size: 1.6rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  width: min(1220px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 42px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.data-empty main::before {
+  content: "数据文件未加载";
+  display: block;
+  width: min(720px, calc(100% - 40px));
+  margin: 80px auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-strong);
+}
+
+@media (max-width: 1120px) {
+  .hero-grid,
+  .method-grid,
+  .download-grid,
+  .citation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .signal-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .paper-figure {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 860px) {
+  .site-header {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  .hero-copy h1 {
+    font-size: 3rem;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-metrics,
+  .snapshot-grid,
+  .chart-grid,
+  .method-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-panel.wide {
+    grid-column: auto;
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .metric-card.highlight strong {
+    font-size: 3.5rem;
+  }
+
+  .chart {
+    height: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell,
+  .site-footer {
+    width: min(100% - 24px, 1220px);
+  }
+
+  .site-header {
+    width: calc(100% - 24px);
+    margin-top: 12px;
+  }
+
+  .hero,
+  .explorer,
+  .method,
+  .download,
+  .citation,
+  .signal-band {
+    padding: 46px 0;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.38rem;
+  }
+
+  .section-heading h2,
+  .citation h2 {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .toolbar,
+  .signal-board,
+  .download-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card,
+  .summary-card,
+  .chart-panel,
+  .ranking-panel,
+  .method-card,
+  .download-card,
+  .citation-box {
+    padding: 16px;
+  }
+
+  .metric-card.highlight {
+    min-height: 210px;
+  }
+
+  .metric-card.highlight strong {
+    font-size: 3rem;
+  }
+
+  .metric-card strong,
+  .summary-card strong {
+    font-size: 2.15rem;
+  }
+
+  .chart {
+    height: 300px;
+  }
+}
