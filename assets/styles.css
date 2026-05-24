@@ -1277,21 +1277,24 @@ tbody tr:hover {
   margin: 18px 0;
 }
 
-.framework-numbers span {
-  padding: 14px 12px;
-  border-top: 3px solid var(--teal);
+.framework-numbers > span {
+  display: grid;
+  align-content: center;
+  min-height: 118px;
+  padding: 18px 16px 16px;
+  border-left: 4px solid var(--teal);
   background: #f7faf9;
 }
 
 .framework-numbers strong {
   display: block;
-  font-size: 2.1rem;
-  line-height: 1;
+  font-size: 2.35rem;
+  line-height: 1.08;
 }
 
 .framework-numbers em {
   display: block;
-  margin-top: 8px;
+  margin-top: 10px;
   color: var(--muted);
   font-style: normal;
   font-weight: 800;
