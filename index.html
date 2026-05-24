@@ -6,20 +6,22 @@
     <title>中国金融机构数字化能力指数</title>
     <meta
       name="description"
-      content="中国金融机构数字化能力指数，覆盖银行、保险与证券机构，基于公开年报和社会责任报告构建。"
+      content="中国金融机构数字化能力指数，覆盖银行、保险与证券机构，基于公开年报和社会责任报告构建，并公开展示测度流程、Agent 分工、提示词结构、质检与验证。"
     />
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="#overview" aria-label="返回首页">
-        <span>中国金融机构</span>
+        <span>CFDCI</span>
         <strong>数字化能力指数</strong>
       </a>
       <nav class="nav-links" aria-label="主导航">
         <a href="#overview">概览</a>
         <a href="#explorer">指数面板</a>
-        <a href="#method">方法</a>
+        <a href="#method">测度流程</a>
+        <a href="#agents">Agent</a>
+        <a href="#validation">质检验证</a>
         <a href="#download">下载</a>
         <a href="#citation">引用</a>
       </nav>
@@ -29,13 +31,17 @@
       <section class="hero" id="overview">
         <div class="shell hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">From disclosure text to institution-level capability</p>
+            <p class="eyebrow">Auditable LLM-based measurement protocol</p>
             <h1>中国金融机构数字化能力指数</h1>
             <p class="lead">
-              基于中国金融机构年报、社会责任报告与信息披露文本，依据金融数字化能力成熟度框架，从八个能力域测度银行、保险与证券机构的数字化能力。
+              基于中国金融机构公开披露文本，依据金融数字化能力成熟度框架，将八个能力域、75 个能力项转化为可追溯的证据链评分，形成机构-年份层面的数字化能力指数。
             </p>
             <div class="hero-actions" aria-label="主要操作">
-              <a class="button primary" href="#explorer">
+              <a class="button primary" href="#method">
+                <i data-lucide="workflow"></i>
+                <span>查看测度流程</span>
+              </a>
+              <a class="button secondary" href="#explorer">
                 <i data-lucide="line-chart"></i>
                 <span>进入指数面板</span>
               </a>
@@ -51,7 +57,7 @@
               <p class="card-kicker">2025 平均数字化能力</p>
               <strong id="heroMean">0.300</strong>
               <span id="heroDelta">较 2024 年 -0.075</span>
-              <p>公开版指数当前覆盖 2010 至 2025 年的机构-年份面板。</p>
+              <p>公开版指数覆盖 2010 至 2025 年的机构-年份面板，结果由报告级评分合并到机构-年份层面。</p>
             </article>
             <article class="metric-card">
               <p class="card-kicker">机构</p>
@@ -201,35 +207,254 @@
       </section>
 
       <section class="method" id="method">
-        <div class="shell method-grid">
+        <div class="shell">
           <div class="section-heading">
-            <p class="eyebrow">Method</p>
-            <h2>测度框架</h2>
+            <p class="eyebrow">Measurement transparency</p>
+            <h2>从公开文本到可审计指数</h2>
             <p>
-              指数锚定中国人民银行金融数字化能力成熟度指引，使用八个能力域和 75 个能力项对公开披露文本进行语义评估。
+              本页把测度过程拆成可检查的环节：输入来源、模型配置、八个领域 Agent、输出格式、报告合并规则、失败补跑、人工复核、外部效标和替代方法对照。
             </p>
           </div>
-          <div class="method-cards">
-            <article class="method-card">
-              <span>01</span>
-              <h3>公开文本</h3>
-              <p>年报、社会责任报告与信息披露报告进入统一清洗、匹配和校验流程。</p>
+
+          <div class="audit-strip" aria-label="测度协议摘要">
+            <article>
+              <span>报告输入</span>
+              <strong>8,783</strong>
+              <p>年报、社会责任报告和信息披露文本</p>
             </article>
-            <article class="method-card">
-              <span>02</span>
-              <h3>八域评分</h3>
-              <p>治理体系、数据要素、基础设施、核心技术、经营动能、服务再造、审慎管理和可持续基础分别评分。</p>
+            <article>
+              <span>能力结构</span>
+              <strong>8 × 75</strong>
+              <p>八个能力域、75 个能力项</p>
             </article>
-            <article class="method-card">
-              <span>03</span>
-              <h3>公开面板</h3>
-              <p>输出机构-年份公开版指数，不含评分原因、文件路径、内部结果 ID 等过程信息。</p>
+            <article>
+              <span>模型设置</span>
+              <strong>0.0</strong>
+              <p>temperature 固定为 0</p>
+            </article>
+            <article>
+              <span>原因覆盖</span>
+              <strong>99.48%</strong>
+              <p>报告级能力域原因文本覆盖率</p>
             </article>
           </div>
-          <figure class="paper-figure">
-            <img src="assets/paper-trends.png" alt="论文中金融机构数字化能力年度趋势图" />
-            <figcaption>论文图表资产：2011 至 2025 年金融机构数字化能力趋势。</figcaption>
-          </figure>
+
+          <div class="pipeline" aria-label="测度流程">
+            <article class="pipeline-step">
+              <span>01</span>
+              <h3>报告登记</h3>
+              <p>按机构、年份、报告类型和原始路径生成稳定清单，每份文件保留唯一 `result_id`。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>02</span>
+              <h3>文件账本</h3>
+              <p>将 PDF 上传为远端 `file_id`，保留 `file_id`、本地路径和机构元数据的一一映射。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>03</span>
+              <h3>领域 Agent</h3>
+              <p>八个 Agent 分别读取全文，在对应能力域内执行证据抽取、档位判断和逐项评分。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>04</span>
+              <h3>证据链输出</h3>
+              <p>每次调用要求输出分项 0-5 整数分和“评分原因”，无明确证据一律给 0。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>05</span>
+              <h3>结构化解析</h3>
+              <p>脚本解析严格 JSON，记录 `chat_id`、token、耗时、缺失项和原始响应。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>06</span>
+              <h3>合并与标准化</h3>
+              <p>同一机构-年份存在多份公开报告时，按能力项保留更高披露证据对应的分数。</p>
+            </article>
+            <article class="pipeline-step">
+              <span>07</span>
+              <h3>质检与验证</h3>
+              <p>执行分数范围、原因文本、路径映射、人工抽样、外部效标和关键词法对照检查。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="agents" id="agents">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Eight domain agents</p>
+            <h2>八个 Agent 如何工作</h2>
+            <p>
+              每个 Agent 只处理一个能力域，提示词包含角色、能力项定义、0-5 档位、证据约束和 JSON 输出格式。领域拆分避免把治理、技术、数据、服务和审慎管理混为一体。
+            </p>
+          </div>
+
+          <div class="agent-grid">
+            <article class="agent-card">
+              <span>Agent 1</span>
+              <h3>金融科技治理体系</h3>
+              <p>9 项：组织协调、战略规划、数字文化、生态建设、科技伦理和主体责任。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 2</span>
+              <h3>数据要素潜能释放</h3>
+              <p>8 项：数据规划、治理体系、数据架构、数据标准、数据质量、数据应用、共享和安全。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 3</span>
+              <h3>新型数字基础设施</h3>
+              <p>13 项：数据中心、容灾、安全、运维、绿色能效、网络、IPv6、云和安全计算。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 4</span>
+              <h3>关键核心技术应用</h3>
+              <p>7 项：产学研合作、供应链稳定、核心技术掌控、分布式架构、云化和价值创造。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 5</span>
+              <h3>数字化经营动能</h3>
+              <p>12 项：敏捷创新、中台建设、自动化风险防控和数智化营销能力。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 6</span>
+              <h3>金融服务智慧再造</h3>
+              <p>11 项：流程再造、线上线下渠道、小微、农村、供应链、绿色和无障碍服务。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 7</span>
+              <h3>金融科技审慎管理</h3>
+              <p>11 项：监管科技、合规数据、风控能力、风险信息库、新技术和算法管理。</p>
+            </article>
+            <article class="agent-card">
+              <span>Agent 8</span>
+              <h3>可持续化发展基础</h3>
+              <p>4 项：金融科技人才选育、标准制定和标准实施。</p>
+            </article>
+          </div>
+
+          <div class="prompt-layout">
+            <article class="prompt-console">
+              <p class="eyebrow">Prompt contract</p>
+              <h3>统一提示词契约</h3>
+              <pre><code>system: 你是金融机构数字化能力测度助手，只依据报告原文和给定分级标准评分。
+system: fileid://&lt;file_id&gt;
+user: &lt;领域评分标准&gt; + &lt;严格 JSON 输出要求&gt;
+
+model: qwen-long
+temperature: 0
+output: {"维度1":{"指标1":0},"评分原因":"逐项说明证据、页码或段落位置"}</code></pre>
+            </article>
+
+            <article class="prompt-rules">
+              <p class="eyebrow">Scoring discipline</p>
+              <h3>评分约束</h3>
+              <ul>
+                <li>每个指标必须给出 0 到 5 的整数分。</li>
+                <li>较高档位默认要求较低档位全部满足。</li>
+                <li>证据必须来自报告原文，尽量定位到页码、章节、段落或表格。</li>
+                <li>与数字化关系弱或无明确披露的内容不纳入评分。</li>
+                <li>不能根据机构规模、行业常识或泛化口号推断高档位。</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="evidence" id="evidence">
+        <div class="shell evidence-grid">
+          <div class="section-heading">
+            <p class="eyebrow">Evidence-analysis-score chain</p>
+            <h2>评分样例如何被复核</h2>
+            <p>
+              公开展示样例时，不只给出最终指数，而是同时呈现原文证据、Agent 判断、分项得分和未升档原因，让读者能看到“为什么是这个分数”。
+            </p>
+          </div>
+
+          <article class="evidence-card">
+            <div class="evidence-header">
+              <span>样例结构</span>
+              <strong>数据要素潜能释放</strong>
+            </div>
+            <ol class="evidence-chain">
+              <li>
+                <span>原文证据</span>
+                <p>报告披露战略规划、数据治理、线上贷款、风控系统、电子渠道和数据安全管理等具体实践。</p>
+              </li>
+              <li>
+                <span>Agent 分析</span>
+                <p>逐项匹配“数据发展规划、数据治理、数据架构、数据标准、数据质量、数据应用、数据共享、数据安全”的档位要求。</p>
+              </li>
+              <li>
+                <span>分项得分</span>
+                <p>示例输出为 4、3、3、3、3、4、3、3，均为 0-5 整数档。</p>
+              </li>
+              <li>
+                <span>未升档原因</span>
+                <p>未披露实时数据平台、量化评价体系、行业级共享输出或 AI 驱动数据安全能力时，不给更高档位。</p>
+              </li>
+            </ol>
+          </article>
+
+          <article class="formula-card">
+            <p class="eyebrow">Index formula</p>
+            <h3>能力域和总指数计算</h3>
+            <p>能力域指数等于本域实际分数之和除以该域最高可能分数。总指数对 75 个能力项采用同一标准化逻辑。</p>
+            <div class="formula">Domain = Σ item score / (5 × item count)</div>
+            <div class="formula">Overall = Σ 75 item scores / (5 × 75)</div>
+            <p class="fine-print">公开版只发布机构-年份指数和八个能力域得分；内部审计表保留评分原因、文件路径、`result_id` 和 `file_id`。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="validation" id="validation">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Quality control and validation</p>
+            <h2>质检与外部验证</h2>
+            <p>
+              审稿意见关注指数是否只是披露强度。本项目用结构化审计、人工抽样、金融科技专利、关键词法对照和单项重测来暴露误差来源，并限定结果解释边界。
+            </p>
+          </div>
+
+          <div class="validation-grid">
+            <article class="validation-card">
+              <i data-lucide="database"></i>
+              <h3>结构化审计</h3>
+              <p>主表和文件索引均为 8,804 行；原因单元格 70,064 / 70,432 非空，覆盖率 99.48%。</p>
+            </article>
+            <article class="validation-card">
+              <i data-lucide="clipboard-check"></i>
+              <h3>人工抽样</h3>
+              <p>覆盖高分、中分、低分，覆盖银行、证券、保险，以及年报和社会责任报告。</p>
+            </article>
+            <article class="validation-card">
+              <i data-lucide="scan-search"></i>
+              <h3>风险词扫描</h3>
+              <p>对“推断、未直接、接近”等高风险表述做二次标记，优先复核高分且含推断性理由的样本。</p>
+            </article>
+            <article class="validation-card">
+              <i data-lucide="flask-conical"></i>
+              <h3>单项重测</h3>
+              <p>针对 2-4 数据标准做全量重测，7,214 条记录最终全部解析完成，并保留两轮补跑和人工覆盖记录。</p>
+            </article>
+            <article class="validation-card">
+              <i data-lucide="badge-check"></i>
+              <h3>外部效标</h3>
+              <p>金融科技专利样本匹配 41 家银行、384 个银行-年份观测；年度专利流量与指数均值相关系数为 0.855。</p>
+            </article>
+            <article class="validation-card">
+              <i data-lucide="git-compare-arrows"></i>
+              <h3>替代方法</h3>
+              <p>传统关键词法作为独立基准，记录词典、OCR、低文本质量标记和频率指数生成过程。</p>
+            </article>
+          </div>
+
+          <article class="validation-note">
+            <h3>解释边界</h3>
+            <p>
+              指数测量的是公开披露文本中可验证的数字化能力证据，不把口号式表述等同于真实能力，也不把相关性结果表述为强因果结论。外部效标和替代方法用于增强有效性，而不是替代报告级证据链。
+            </p>
+          </article>
         </div>
       </section>
 
@@ -237,8 +462,8 @@
         <div class="shell download-grid">
           <div class="section-heading">
             <p class="eyebrow">Download</p>
-            <h2>公开数据</h2>
-            <p>下载文件与页面数据均来自 `03_测度结果/04_公开版指数/公开使用版.xlsx`。</p>
+            <h2>公开数据与复现入口</h2>
+            <p>下载文件与页面数据均来自 `03_测度结果/04_公开版指数/公开使用版.xlsx`。方法透明度材料对应项目中的提示词、评分脚本、质检报告和外部验证试验。</p>
           </div>
           <a class="download-card" href="downloads/cfdci-public-index.xlsx" download>
             <i data-lucide="file-spreadsheet"></i>
