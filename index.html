@@ -13,7 +13,7 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#overview" aria-label="Back to overview">
-        <span>CFDCI</span>
+        <span><span class="lang-en">CFDCI</span><span class="lang-zh">数能指数</span></span>
         <strong>
           <span class="lang-en">Digital Capability Index</span>
           <span class="lang-zh">数字化能力指数</span>
@@ -29,8 +29,14 @@
         <a href="#download"><span class="lang-en">Downloads</span><span class="lang-zh">下载</span></a>
       </nav>
       <div class="language-switch" role="group" aria-label="Language">
-        <button class="is-active" type="button" data-lang-switch="en">EN</button>
-        <button type="button" data-lang-switch="zh">中文</button>
+        <button class="is-active" type="button" data-lang-switch="en">
+          <span class="lang-en">English</span>
+          <span class="lang-zh">英文</span>
+        </button>
+        <button type="button" data-lang-switch="zh">
+          <span class="lang-en">Chinese</span>
+          <span class="lang-zh">中文</span>
+        </button>
       </div>
     </header>
 
@@ -215,7 +221,7 @@
               <a class="text-link" href="data/public-index.csv" download>
                 <i data-lucide="table"></i>
                 <span class="lang-en">Download CSV</span>
-                <span class="lang-zh">下载 CSV</span>
+                <span class="lang-zh">下载表格</span>
               </a>
             </header>
             <div class="table-wrap">
@@ -295,11 +301,11 @@
             <article class="workflow-panel">
               <p class="eyebrow"><span class="lang-en">Manuscript workflow, redrawn</span><span class="lang-zh">论文流程图重绘</span></p>
               <div class="workflow-diagram" aria-label="Measurement workflow">
-                <div class="workflow-node source"><strong><span class="lang-en">Annual and CSR reports</span><span class="lang-zh">年报与社会责任报告</span></strong><small>PDF / text / report metadata</small></div>
-                <div class="workflow-node criteria"><strong><span class="lang-en">Scoring criteria</span><span class="lang-zh">评分标准</span></strong><small>PBOC grid + item rubrics</small></div>
-                <div class="workflow-node agents"><strong><span class="lang-en">Eight domain agents</span><span class="lang-zh">八个领域智能体</span></strong><small>extract · synthesize · score</small></div>
-                <div class="workflow-node gate"><strong><span class="lang-en">Evaluation layer</span><span class="lang-zh">结果评估层</span></strong><small>evidence · reasoning · score fit</small></div>
-                <div class="workflow-node output"><strong><span class="lang-en">Index output</span><span class="lang-zh">指数输出</span></strong><small>score · evidence · basis · request ID</small></div>
+                <div class="workflow-node source"><strong><span class="lang-en">Annual and CSR reports</span><span class="lang-zh">年报与社会责任报告</span></strong><small><span class="lang-en">PDF / text / report metadata</span><span class="lang-zh">原始文件、文本和报告元数据</span></small></div>
+                <div class="workflow-node criteria"><strong><span class="lang-en">Scoring criteria</span><span class="lang-zh">评分标准</span></strong><small><span class="lang-en">PBOC grid + item rubrics</span><span class="lang-zh">人民银行框架和分项细则</span></small></div>
+                <div class="workflow-node agents"><strong><span class="lang-en">Eight domain agents</span><span class="lang-zh">八个领域智能体</span></strong><small><span class="lang-en">extract · synthesize · score</span><span class="lang-zh">提取、综合、评分</span></small></div>
+                <div class="workflow-node gate"><strong><span class="lang-en">Evaluation layer</span><span class="lang-zh">结果评估层</span></strong><small><span class="lang-en">evidence · reasoning · score fit</span><span class="lang-zh">依据、推理、分值匹配</span></small></div>
+                <div class="workflow-node output"><strong><span class="lang-en">Index output</span><span class="lang-zh">指数输出</span></strong><small><span class="lang-en">score · evidence · basis · request ID</span><span class="lang-zh">分值、依据、理由、请求编号</span></small></div>
               </div>
               <p>
                 <span class="lang-en">The evaluation layer accepts records after checking source support, reasoning consistency, and score alignment. Accepted records retain the score, supporting basis, and request identifier before aggregation.</span>
@@ -389,7 +395,7 @@
 
           <div class="contract-line">
             <strong><span class="lang-en">Common scoring contract</span><span class="lang-zh">统一评分约束</span></strong>
-            <p><span class="lang-en">All agents use the same model setting and output structure: Qwen-Long, temperature 0, item scores from 0 to 5, source-grounded rationale, report identifier, and request identifier. Full prompt files are provided as downloadable method materials.</span><span class="lang-zh">所有智能体使用同一模型设置和输出结构：Qwen-Long、temperature 0、0-5 分项评分、基于原文的评分理由、报告标识和请求编号。完整提示词作为方法材料下载提供。</span></p>
+            <p><span class="lang-en">All agents use the same model setting and output structure: Qwen-Long, temperature 0, item scores from 0 to 5, source-grounded rationale, report identifier, and request identifier. Full prompt files are provided as downloadable method materials.</span><span class="lang-zh">所有智能体使用同一模型设置和输出结构：通义千问长文本模型、温度参数设为零、分项评分为零至五分、评分理由基于原文，并保留报告标识和请求编号。完整提示词作为方法材料下载提供。</span></p>
             <a class="text-link" href="downloads/domain-scoring-prompts.zip" download>
               <i data-lucide="folder-archive"></i>
               <span class="lang-en">Download domain prompt set</span>
@@ -413,15 +419,15 @@
           <div class="case-identity">
             <div>
               <span class="lang-en">Institution</span><span class="lang-zh">机构</span>
-              <strong>Rizhao Bank Co., Ltd.</strong>
+              <strong><span class="lang-en">Rizhao Bank Co., Ltd.</span><span class="lang-zh">日照银行股份有限公司</span></strong>
             </div>
             <div>
               <span class="lang-en">Source report</span><span class="lang-zh">来源报告</span>
-              <strong><span class="lang-en">2025 Annual Report Summary, official PDF, 34 pages</span><span class="lang-zh">2025 年年度报告摘要，官网 PDF，共 34 页</span></strong>
+              <strong><span class="lang-en">2025 Annual Report Summary, official PDF, 34 pages</span><span class="lang-zh">二〇二五年年度报告摘要，官网文件，共三十四页</span></strong>
             </div>
             <div>
               <span class="lang-en">Scoring record</span><span class="lang-zh">评分记录</span>
-              <strong>result_id: e59ef0efe12c5379</strong>
+              <strong><span class="lang-en">result_id: e59ef0efe12c5379</span><span class="lang-zh">评分编号：二〇二五-日照-一</span></strong>
             </div>
             <a class="text-link" href="downloads/rizhao-bank-2025-annual-report-summary.pdf" download>
               <i data-lucide="file-text"></i>
@@ -441,22 +447,22 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>pp. 13-14</td>
+                  <td><span class="lang-en">pp. 13-14</span><span class="lang-zh">第十三至十四页</span></td>
                   <td><span class="lang-en">Four lines of digitalization, four financial service systems, the upgraded "631" supply-chain finance system, and the "Yidang Life" platform serving 1.67 million residents.</span><span class="lang-zh">“四个数字化”、四大金融服务体系、升级“631”供应链金融服务体系，以及服务 167 万居民的“宜当生活”平台。</span></td>
                   <td><span class="lang-en">Data development planning 4/5; data sharing 3/5; online service channel 5/5.</span><span class="lang-zh">数据发展规划 4/5；数据共享 3/5；线上服务渠道 5/5。</span></td>
                 </tr>
                 <tr>
-                  <td>pp. 23-24</td>
+                  <td><span class="lang-en">pp. 23-24</span><span class="lang-zh">第二十三至二十四页</span></td>
                   <td><span class="lang-en">Big data, risk models, intelligent risk-control systems, smart compliance management, host-security upgrades, application hardening, penetration testing, and classified protection assessment.</span><span class="lang-zh">大数据、风险模型、智能风控系统、智慧合规管理、主机安全升级、应用加固、渗透性测试和等保测评。</span></td>
                   <td><span class="lang-en">Data quality 3/5; data security 4/5; infrastructure security protection 3/5.</span><span class="lang-zh">数据质量 3/5；数据安全 4/5；基础设施安全防护 3/5。</span></td>
                 </tr>
                 <tr>
-                  <td>p. 27</td>
+                  <td><span class="lang-en">p. 27</span><span class="lang-zh">第二十七页</span></td>
                   <td><span class="lang-en">Digital green-finance service system, online green-bill processing, emission-rights pledge supply-chain bill, dynamic carbon-account case, 175 inclusive-finance scenarios, and 1.67 million livelihood-platform users.</span><span class="lang-zh">数字绿色金融服务体系、绿色票据全线上流程、排污权抵押供应链票据、动态碳账户案例、175 个普惠金融场景和 167 万民生平台用户。</span></td>
                   <td><span class="lang-en">Data application 5/5; green finance digital service 3/5; small-business service capability 4/5.</span><span class="lang-zh">数据应用 5/5；绿色金融数字服务 3/5；小微服务能力 4/5。</span></td>
                 </tr>
                 <tr>
-                  <td>pp. 27-28</td>
+                  <td><span class="lang-en">pp. 27-28</span><span class="lang-zh">第二十七至二十八页</span></td>
                   <td><span class="lang-en">Online-offline outreach, 1,174 consumer-education activities, 529,400 customers reached, 22 elderly-friendly branches, one accessibility-certified branch, and a formal elderly-service manual.</span><span class="lang-zh">线上线下宣传、1,174 次金融教育活动、触及 52.94 万客户、22 家适老服务认证网点、1 家无障碍环境认证网点和正式适老服务手册。</span></td>
                   <td><span class="lang-en">Special-group digital service 4/5; branch accessibility service 5/5.</span><span class="lang-zh">特殊客群数字服务 4/5；网点无障碍服务 5/5。</span></td>
                 </tr>
@@ -475,7 +481,7 @@
               <strong>0.727</strong>
               <p>3, 4, 3, 5, 4, 4, 1, 4, 3, 4, 5</p>
             </div>
-            <p class="formula-plain">Domain index = sum of item scores / maximum possible item score</p>
+            <p class="formula-plain"><span class="lang-en">Domain index = sum of item scores / maximum possible item score</span><span class="lang-zh">能力域指数等于分项得分之和除以分项满分之和</span></p>
           </div>
         </div>
       </section>
@@ -590,8 +596,8 @@
             <h2><span class="lang-en">Citation</span><span class="lang-zh">引用</span></h2>
           </div>
           <article class="citation-box">
-            <h3>Measuring Digital Capability in Chinese Financial Institutions</h3>
-            <p>Yang, C., Zeng, Y., & Zhang, S. (2026). Measuring Digital Capability in Chinese Financial Institutions. Working paper.</p>
+            <h3><span class="lang-en">Measuring Digital Capability in Chinese Financial Institutions</span><span class="lang-zh">中国金融机构数字化能力测度</span></h3>
+            <p><span class="lang-en">Yang, C., Zeng, Y., & Zhang, S. (2026). Measuring Digital Capability in Chinese Financial Institutions. Working paper.</span><span class="lang-zh">杨晨、曾勇、张少川（二〇二六）：《中国金融机构数字化能力测度》。工作论文。</span></p>
           </article>
         </div>
       </section>
@@ -611,6 +617,7 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="data/index-data.js"></script>
+    <script src="data/name-translations.js"></script>
     <script src="assets/app.js"></script>
   </body>
 </html>

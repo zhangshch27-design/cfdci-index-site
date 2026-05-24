@@ -2,6 +2,7 @@
   const rows = window.CFDCI_DATA || [];
   const meta = window.CFDCI_META || {};
   const domains = meta.domains || [];
+  const translations = window.CFDCI_TRANSLATIONS || {};
   const i18n = {
     en: {
       title: "China Financial Institutions Digital Capability Index",
@@ -22,6 +23,7 @@
       trendSector: "Means by sector",
       trendType: "Means by institution type",
       trendCurrent: "Mean for current filter",
+      currentFilter: "Current filter",
       domainMean: "Domain mean",
       regionTitleProvince: "Regional ranking",
       regionTitleCity: "City ranking",
@@ -32,6 +34,7 @@
       sector: "Sector",
       type: "Type",
       region: "Region",
+      unknownLocation: "Undisclosed location",
       emptyRanking: "No data under the current filters",
       sectors: {
         银行: "Banks",
@@ -116,6 +119,7 @@
       trendSector: "按机构大类展示均值",
       trendType: "按机构类型展示均值",
       trendCurrent: "当前筛选年度均值",
+      currentFilter: "当前筛选",
       domainMean: "能力域均值",
       regionTitleProvince: "地区排名",
       regionTitleCity: "城市排名",
@@ -126,6 +130,7 @@
       sector: "大类",
       type: "类型",
       region: "地区",
+      unknownLocation: "未披露地区",
       emptyRanking: "当前筛选无数据",
       sectors: {},
       types: {},
@@ -244,7 +249,7 @@
 
     const institutions = unique(rows.map((row) => row.institution)).sort((a, b) => a.localeCompare(b, "zh-CN"));
     $("#institutionList").innerHTML = institutions
-      .map((institution) => `<option value="${escapeAttr(institution)}"></option>`)
+      .map((institution) => `<option value="${escapeAttr(formatInstitution(institution))}"></option>`)
       .join("");
   }
 
@@ -342,10 +347,10 @@
         (row, index) => `
           <article class="signal-card" style="--accent:${palette[index % palette.length]}">
             <span class="rank-badge">${index + 1}</span>
-            <h3>${escapeHtml(row.institution)}</h3>
+            <h3>${escapeHtml(formatInstitution(row.institution))}</h3>
             <p>${escapeHtml(formatSector(row.sector))} · ${escapeHtml(formatType(row.type))}</p>
             <strong>${formatScore(row.score)}</strong>
-            <span>${escapeHtml(formatProvince(row.province))} ${escapeHtml(row.city)}</span>
+            <span>${escapeHtml(formatRegion(row))}</span>
           </article>
         `,
       )
@@ -365,7 +370,7 @@
     $("#filteredMean").textContent = formatScore(mean);
     $("#filteredCount").textContent = t("filteredCount", filtered.length, metricLabel);
 
-    $("#topInstitution").textContent = top ? top.institution : t("noData");
+    $("#topInstitution").textContent = top ? formatInstitution(top.institution) : t("noData");
     $("#topInstitutionScore").textContent = top ? t("topScore", metricLabel, formatScore(top[state.metric])) : "-";
 
     $("#topDomain").textContent = domainStats[0] ? domainStats[0].label : t("noData");
@@ -382,7 +387,7 @@
     if (state.institution) {
       const institutionNames = unique(base.map((row) => row.institution)).slice(0, 4);
       series = institutionNames.map((name, index) => ({
-        name,
+        name: formatInstitution(name),
         type: "line",
         smooth: true,
         symbolSize: 7,
@@ -418,7 +423,7 @@
     } else {
       series = [
         {
-          name: currentLang === "zh" ? "当前筛选" : "Current filter",
+          name: t("currentFilter"),
           type: "line",
           smooth: true,
           symbolSize: 7,
@@ -537,7 +542,7 @@
       yAxis: {
         type: "category",
         inverse: true,
-        data: grouped.map((item) => (field === "province" ? formatProvince(item.name) : item.name)),
+        data: grouped.map((item) => (field === "province" ? formatProvince(item.name) : formatCity(item.name))),
         axisTick: { show: false },
         axisLine: { show: false },
       },
@@ -571,10 +576,10 @@
             (row, index) => `
               <tr>
                 <td>${index + 1}</td>
-                <td>${escapeHtml(row.institution)}</td>
+                <td>${escapeHtml(formatInstitution(row.institution))}</td>
                 <td>${escapeHtml(formatSector(row.sector))}</td>
                 <td>${escapeHtml(formatType(row.type))}</td>
-                <td>${escapeHtml(formatProvince(row.province))} · ${escapeHtml(row.city)}</td>
+                <td>${escapeHtml(formatRegion(row))}</td>
                 <td>${formatScore(row[state.metric])}</td>
               </tr>
             `,
@@ -590,7 +595,7 @@
       if (state.sector !== "all" && row.sector !== state.sector) return false;
       if (state.type !== "all" && row.type !== state.type) return false;
       if (state.province !== "all" && row.province !== state.province) return false;
-      if (includeInstitution && query && !row.institution.includes(query)) return false;
+      if (includeInstitution && query && !matchesInstitution(row.institution, query)) return false;
       return isNumber(row[state.metric]);
     });
   }
@@ -599,7 +604,7 @@
     const grouped = new Map();
     sourceRows.forEach((row) => {
       if (!isNumber(row[metric])) return;
-      const key = row[field] || "未披露";
+      const key = row[field] || "__unknown__";
       if (!grouped.has(key)) grouped.set(key, []);
       grouped.get(key).push(row[metric]);
     });
@@ -656,6 +661,39 @@
 
   function formatProvince(value) {
     return i18n[currentLang].provinces[value] || value;
+  }
+
+  function formatInstitution(value) {
+    if (currentLang === "en") return translations.institutions?.[value] || fallbackEnglishLabel(value, "Institution");
+    return value || t("noData");
+  }
+
+  function formatCity(value) {
+    if (!value || value === "__unknown__") return t("unknownLocation");
+    if (currentLang === "en") return translations.cities?.[value] || fallbackEnglishLabel(value, "Location");
+    return value;
+  }
+
+  function formatRegion(row) {
+    const province = formatProvince(row.province);
+    const city = formatCity(row.city);
+    if (!city || province === city) return province;
+    return `${province} · ${city}`;
+  }
+
+  function matchesInstitution(value, query) {
+    const raw = String(value || "").toLocaleLowerCase();
+    const display = formatInstitution(value).toLocaleLowerCase();
+    const normalizedQuery = String(query || "").toLocaleLowerCase();
+    return raw.includes(normalizedQuery) || display.includes(normalizedQuery);
+  }
+
+  function fallbackEnglishLabel(value, prefix) {
+    const code = String(value || "")
+      .split("")
+      .map((char) => char.charCodeAt(0).toString(10))
+      .join("-");
+    return code ? `${prefix} ${code}` : prefix;
   }
 
   function t(key, ...args) {
