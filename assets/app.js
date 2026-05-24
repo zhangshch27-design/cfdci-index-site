@@ -2,9 +2,141 @@
   const rows = window.CFDCI_DATA || [];
   const meta = window.CFDCI_META || {};
   const domains = meta.domains || [];
-  const metricOptions = [{ key: "score", label: "数字化能力" }, ...domains];
+  const i18n = {
+    en: {
+      title: "China Financial Institutions Digital Capability Index",
+      description:
+        "China Financial Institutions Digital Capability Index, built from annual reports and CSR reports of banks, insurers, and securities firms. The site presents sample construction, the indicator system, scoring procedures, quality checks, and external validation.",
+      metricScore: "Digital capability",
+      allSectors: "All sectors",
+      allTypes: "All types",
+      allRegions: "All regions",
+      searchPlaceholder: "Search institution",
+      chartLibFail: "Chart library failed to load",
+      records: "records",
+      noData: "No data",
+      filteredCount: (count, metric) => `${formatInteger(count)} records · ${metric}`,
+      heroDelta: (year, delta) => `vs. ${year} ${formatDelta(delta)}`,
+      topScore: (metric, score) => `${metric} ${score}`,
+      trendInstitution: "Matched institution series",
+      trendSector: "Means by sector",
+      trendType: "Means by institution type",
+      trendCurrent: "Mean for current filter",
+      domainMean: "Domain mean",
+      regionTitleProvince: "Regional ranking",
+      regionTitleCity: "City ranking",
+      regionCaptionProvince: "Top province-level means",
+      regionCaptionCity: (province) => `Top city means in ${province}`,
+      rank: "Rank",
+      institution: "Institution",
+      sector: "Sector",
+      type: "Type",
+      region: "Region",
+      emptyRanking: "No data under the current filters",
+      sectors: {
+        银行: "Banks",
+        保险: "Insurers",
+        证券: "Securities firms",
+      },
+      types: {
+        人身险: "Life insurance",
+        保险资产管理: "Insurance asset management",
+        保险集团: "Insurance group",
+        再保险: "Reinsurance",
+        农村商业银行: "Rural commercial bank",
+        国有商业银行: "State-owned commercial bank",
+        城市商业银行: "City commercial bank",
+        外资银行: "Foreign bank",
+        民营银行: "Private bank",
+        股份制商业银行: "Joint-stock commercial bank",
+        证券公司: "Securities company",
+        财产险: "Property and casualty insurance",
+      },
+      provinces: {
+        上海市: "Shanghai",
+        云南省: "Yunnan",
+        内蒙古自治区: "Inner Mongolia",
+        北京市: "Beijing",
+        吉林省: "Jilin",
+        四川省: "Sichuan",
+        天津市: "Tianjin",
+        宁夏回族自治区: "Ningxia",
+        安徽省: "Anhui",
+        山东省: "Shandong",
+        山西省: "Shanxi",
+        广东省: "Guangdong",
+        广西壮族自治区: "Guangxi",
+        新疆维吾尔自治区: "Xinjiang",
+        江苏省: "Jiangsu",
+        江西省: "Jiangxi",
+        河北省: "Hebei",
+        河南省: "Henan",
+        浙江省: "Zhejiang",
+        海南省: "Hainan",
+        湖北省: "Hubei",
+        湖南省: "Hunan",
+        甘肃省: "Gansu",
+        福建省: "Fujian",
+        西藏自治区: "Tibet",
+        贵州省: "Guizhou",
+        辽宁省: "Liaoning",
+        重庆市: "Chongqing",
+        陕西省: "Shaanxi",
+        青海省: "Qinghai",
+        香港: "Hong Kong",
+        黑龙江省: "Heilongjiang",
+      },
+      domains: {
+        governance: "Fintech Governance System",
+        dataPotential: "Data Factor Potential",
+        infrastructure: "New Digital Infrastructure",
+        coreTechnology: "Core Technology Application",
+        operationMomentum: "Digital Operating Momentum",
+        serviceReengineering: "Financial Service Reengineering",
+        riskManagement: "Prudent Fintech Management",
+        sustainability: "Sustainable Development Foundation",
+      },
+    },
+    zh: {
+      title: "中国金融机构数字化能力指数",
+      description:
+        "中国金融机构数字化能力指数，覆盖银行、保险与证券机构，基于公开年报和社会责任报告构建，展示样本构建、指标体系、评分程序、质量检验和外部效标结果。",
+      metricScore: "数字化能力",
+      allSectors: "全部大类",
+      allTypes: "全部类型",
+      allRegions: "全部地区",
+      searchPlaceholder: "输入机构名称",
+      chartLibFail: "图表库加载失败",
+      records: "条记录",
+      noData: "无数据",
+      filteredCount: (count, metric) => `${formatInteger(count)} 条记录 · ${metric}`,
+      heroDelta: (year, delta) => `较 ${year} 年 ${formatDelta(delta)}`,
+      topScore: (metric, score) => `${metric} ${score}`,
+      trendInstitution: "匹配机构年度序列",
+      trendSector: "按机构大类展示均值",
+      trendType: "按机构类型展示均值",
+      trendCurrent: "当前筛选年度均值",
+      domainMean: "能力域均值",
+      regionTitleProvince: "地区排名",
+      regionTitleCity: "城市排名",
+      regionCaptionProvince: "省级均值前列",
+      regionCaptionCity: (province) => `${province} 城市均值前列`,
+      rank: "排名",
+      institution: "机构",
+      sector: "大类",
+      type: "类型",
+      region: "地区",
+      emptyRanking: "当前筛选无数据",
+      sectors: {},
+      types: {},
+      provinces: {},
+      domains: {},
+    },
+  };
   const sectorOrder = ["银行", "保险", "证券"];
   const palette = ["#0f7b78", "#b45b32", "#2f6f98", "#6f4ca2", "#3d8c72", "#9a3733"];
+  let currentLang = normalizeLanguage(localStorage.getItem("cfdci-language") || document.documentElement.dataset.lang || "en");
+  let initialized = false;
 
   const state = {
     year: meta.latestYear,
@@ -21,6 +153,8 @@
   document.addEventListener("DOMContentLoaded", init);
 
   function init() {
+    setupLanguage();
+
     if (!rows.length) {
       document.body.classList.add("data-empty");
       return;
@@ -33,17 +167,51 @@
     renderAll();
     window.addEventListener("resize", resizeCharts);
     if (window.lucide) window.lucide.createIcons();
+    initialized = true;
+  }
+
+  function setupLanguage() {
+    applyLanguage(currentLang, { rerender: false });
+    document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.langSwitch);
+      });
+    });
+  }
+
+  function applyLanguage(lang, { rerender = true } = {}) {
+    currentLang = normalizeLanguage(lang);
+    localStorage.setItem("cfdci-language", currentLang);
+    document.documentElement.dataset.lang = currentLang;
+    document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
+    document.title = t("title");
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", t("description"));
+    document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.langSwitch === currentLang);
+    });
+    const search = $("#institutionSearch");
+    if (search) search.placeholder = t("searchPlaceholder");
+
+    if (rerender && initialized) {
+      hydrateHero();
+      buildControls();
+      renderAll();
+      resizeCharts();
+      if (window.lucide) window.lucide.createIcons();
+    }
   }
 
   function hydrateHero() {
     $("#heroMean").textContent = formatScore(meta.latestMean);
-    $("#heroDelta").textContent = `较 ${meta.previousYear} 年 ${formatDelta(meta.latestYoY)}`;
+    $("#heroDelta").textContent = t("heroDelta", meta.previousYear, meta.latestYoY);
     $("#institutionCount").textContent = formatInteger(meta.institutionCount);
     $("#rowCount").textContent = formatInteger(meta.rowCount);
     $("#geoCount").textContent = formatInteger(meta.provinceCount);
   }
 
   function buildControls() {
+    const metricOptions = getMetricOptions();
     const metricButtons = $("#metricButtons");
     metricButtons.innerHTML = metricOptions
       .map(
@@ -62,16 +230,16 @@
 
     const sectors = unique(rows.map((row) => row.sector)).sort(sortSectors);
     $("#sectorSelect").innerHTML = [
-      `<option value="all">全部大类</option>`,
-      ...sectors.map((sector) => `<option value="${escapeAttr(sector)}">${escapeHtml(sector)}</option>`),
+      `<option value="all">${escapeHtml(t("allSectors"))}</option>`,
+      ...sectors.map((sector) => `<option value="${escapeAttr(sector)}">${escapeHtml(formatSector(sector))}</option>`),
     ].join("");
 
     buildTypeOptions();
 
     const provinces = unique(rows.map((row) => row.province)).sort((a, b) => a.localeCompare(b, "zh-CN"));
     $("#provinceSelect").innerHTML = [
-      `<option value="all">全部地区</option>`,
-      ...provinces.map((province) => `<option value="${escapeAttr(province)}">${escapeHtml(province)}</option>`),
+      `<option value="all">${escapeHtml(t("allRegions"))}</option>`,
+      ...provinces.map((province) => `<option value="${escapeAttr(province)}">${escapeHtml(formatProvince(province))}</option>`),
     ].join("");
 
     const institutions = unique(rows.map((row) => row.institution)).sort((a, b) => a.localeCompare(b, "zh-CN"));
@@ -87,8 +255,8 @@
     const previous = state.type;
 
     typeSelect.innerHTML = [
-      `<option value="all">全部类型</option>`,
-      ...types.map((type) => `<option value="${escapeAttr(type)}">${escapeHtml(type)}</option>`),
+      `<option value="all">${escapeHtml(t("allTypes"))}</option>`,
+      ...types.map((type) => `<option value="${escapeAttr(type)}">${escapeHtml(formatType(type))}</option>`),
     ].join("");
 
     if (previous !== "all" && types.includes(previous)) {
@@ -141,7 +309,7 @@
   function initCharts() {
     if (!window.echarts) {
       document.querySelectorAll(".chart").forEach((chart) => {
-        chart.textContent = "图表库加载失败";
+        chart.textContent = t("chartLibFail");
       });
       return;
     }
@@ -175,9 +343,9 @@
           <article class="signal-card" style="--accent:${palette[index % palette.length]}">
             <span class="rank-badge">${index + 1}</span>
             <h3>${escapeHtml(row.institution)}</h3>
-            <p>${escapeHtml(row.sector)} · ${escapeHtml(row.type)}</p>
+            <p>${escapeHtml(formatSector(row.sector))} · ${escapeHtml(formatType(row.type))}</p>
             <strong>${formatScore(row.score)}</strong>
-            <span>${escapeHtml(row.province)} ${escapeHtml(row.city)}</span>
+            <span>${escapeHtml(formatProvince(row.province))} ${escapeHtml(row.city)}</span>
           </article>
         `,
       )
@@ -190,17 +358,17 @@
     const mean = average(filtered, state.metric);
     const top = topBy(filtered, state.metric);
     const domainStats = domains
-      .map((domain) => ({ ...domain, value: average(filtered, domain.key) }))
+      .map((domain) => ({ ...domain, label: getDomainLabel(domain), value: average(filtered, domain.key) }))
       .filter((item) => isNumber(item.value))
       .sort((a, b) => b.value - a.value);
 
     $("#filteredMean").textContent = formatScore(mean);
-    $("#filteredCount").textContent = `${formatInteger(filtered.length)} 条记录 · ${metricLabel}`;
+    $("#filteredCount").textContent = t("filteredCount", filtered.length, metricLabel);
 
-    $("#topInstitution").textContent = top ? top.institution : "无数据";
-    $("#topInstitutionScore").textContent = top ? `${metricLabel} ${formatScore(top[state.metric])}` : "-";
+    $("#topInstitution").textContent = top ? top.institution : t("noData");
+    $("#topInstitutionScore").textContent = top ? t("topScore", metricLabel, formatScore(top[state.metric])) : "-";
 
-    $("#topDomain").textContent = domainStats[0] ? domainStats[0].label : "无数据";
+    $("#topDomain").textContent = domainStats[0] ? domainStats[0].label : t("noData");
     $("#topDomainScore").textContent = domainStats[0] ? formatScore(domainStats[0].value) : "-";
   }
 
@@ -222,11 +390,11 @@
         itemStyle: { color: palette[index % palette.length] },
         data: years.map((year) => average(base.filter((row) => row.year === year && row.institution === name), state.metric)),
       }));
-      $("#trendCaption").textContent = "匹配机构年度序列";
+      $("#trendCaption").textContent = t("trendInstitution");
     } else if (state.sector === "all" && state.type === "all") {
       const sectors = unique(base.map((row) => row.sector)).sort(sortSectors);
       series = sectors.map((sector, index) => ({
-        name: sector,
+        name: formatSector(sector),
         type: "line",
         smooth: true,
         symbolSize: 7,
@@ -234,11 +402,11 @@
         itemStyle: { color: palette[index % palette.length] },
         data: years.map((year) => average(base.filter((row) => row.year === year && row.sector === sector), state.metric)),
       }));
-      $("#trendCaption").textContent = "按机构大类展示均值";
+      $("#trendCaption").textContent = t("trendSector");
     } else if (state.type === "all") {
       const groups = topGroups(base, "type", 5);
       series = groups.map((type, index) => ({
-        name: type,
+        name: formatType(type),
         type: "line",
         smooth: true,
         symbolSize: 7,
@@ -246,11 +414,11 @@
         itemStyle: { color: palette[index % palette.length] },
         data: years.map((year) => average(base.filter((row) => row.year === year && row.type === type), state.metric)),
       }));
-      $("#trendCaption").textContent = "按机构类型展示均值";
+      $("#trendCaption").textContent = t("trendType");
     } else {
       series = [
         {
-          name: "当前筛选",
+          name: currentLang === "zh" ? "当前筛选" : "Current filter",
           type: "line",
           smooth: true,
           symbolSize: 7,
@@ -259,7 +427,7 @@
           data: years.map((year) => average(base.filter((row) => row.year === year), state.metric)),
         },
       ];
-      $("#trendCaption").textContent = "当前筛选年度均值";
+      $("#trendCaption").textContent = t("trendCurrent");
     }
 
     charts.trend.setOption({
@@ -281,7 +449,7 @@
         axisLabel: { formatter: (value) => value.toFixed(1) },
       },
       series,
-      aria: { enabled: true, description: `${metricLabel}年度趋势` },
+      aria: { enabled: true, description: `${metricLabel} annual trend` },
     });
   }
 
@@ -296,7 +464,7 @@
       radar: {
         radius: "68%",
         center: ["50%", "54%"],
-        indicator: domains.map((domain) => ({ name: domain.label, max: 1 })),
+        indicator: domains.map((domain) => ({ name: getDomainLabel(domain), max: 1 })),
         splitLine: { lineStyle: { color: "#e5ded1" } },
         splitArea: { areaStyle: { color: ["#faf7ef", "#f2eee4"] } },
         axisName: { color: "#53615f", fontSize: 11 },
@@ -304,7 +472,7 @@
       series: [
         {
           type: "radar",
-          data: [{ value: values, name: "能力域均值" }],
+          data: [{ value: values, name: t("domainMean") }],
           areaStyle: { opacity: 0.18 },
           lineStyle: { width: 3 },
           symbolSize: 5,
@@ -351,8 +519,9 @@
     const field = state.province === "all" ? "province" : "city";
     const grouped = groupAverage(filtered, field, state.metric).slice(0, 12);
 
-    $("#regionTitle").textContent = state.province === "all" ? "地区排名" : "城市排名";
-    $("#regionCaption").textContent = state.province === "all" ? "省级均值前列" : `${state.province} 城市均值前列`;
+    $("#regionTitle").textContent = state.province === "all" ? t("regionTitleProvince") : t("regionTitleCity");
+    $("#regionCaption").textContent =
+      state.province === "all" ? t("regionCaptionProvince") : t("regionCaptionCity", formatProvince(state.province));
 
     charts.region.setOption({
       color: ["#2f6f98"],
@@ -368,7 +537,7 @@
       yAxis: {
         type: "category",
         inverse: true,
-        data: grouped.map((item) => item.name),
+        data: grouped.map((item) => (field === "province" ? formatProvince(item.name) : item.name)),
         axisTick: { show: false },
         axisLine: { show: false },
       },
@@ -390,6 +559,11 @@
       .slice(0, 15);
     const metricLabel = getMetricLabel(state.metric);
 
+    $("#rankHeaderRank").textContent = t("rank");
+    $("#rankHeaderInstitution").textContent = t("institution");
+    $("#rankHeaderSector").textContent = t("sector");
+    $("#rankHeaderType").textContent = t("type");
+    $("#rankHeaderRegion").textContent = t("region");
     $("#rankMetricLabel").textContent = metricLabel;
     $("#rankingBody").innerHTML = filtered.length
       ? filtered
@@ -398,15 +572,15 @@
               <tr>
                 <td>${index + 1}</td>
                 <td>${escapeHtml(row.institution)}</td>
-                <td>${escapeHtml(row.sector)}</td>
-                <td>${escapeHtml(row.type)}</td>
-                <td>${escapeHtml(row.province)} · ${escapeHtml(row.city)}</td>
+                <td>${escapeHtml(formatSector(row.sector))}</td>
+                <td>${escapeHtml(formatType(row.type))}</td>
+                <td>${escapeHtml(formatProvince(row.province))} · ${escapeHtml(row.city)}</td>
                 <td>${formatScore(row[state.metric])}</td>
               </tr>
             `,
           )
           .join("")
-      : `<tr><td colspan="6">当前筛选无数据</td></tr>`;
+      : `<tr><td colspan="6">${escapeHtml(t("emptyRanking"))}</td></tr>`;
   }
 
   function getFilteredRows({ includeYear, includeInstitution }) {
@@ -460,8 +634,38 @@
     return [...new Set(values.filter(Boolean))];
   }
 
+  function getMetricOptions() {
+    return [{ key: "score", label: t("metricScore") }, ...domains.map((domain) => ({ ...domain, label: getDomainLabel(domain) }))];
+  }
+
   function getMetricLabel(metricKey) {
-    return metricOptions.find((metric) => metric.key === metricKey)?.label || metricKey;
+    return getMetricOptions().find((metric) => metric.key === metricKey)?.label || metricKey;
+  }
+
+  function getDomainLabel(domain) {
+    return i18n[currentLang].domains[domain.key] || domain.label;
+  }
+
+  function formatSector(value) {
+    return i18n[currentLang].sectors[value] || value;
+  }
+
+  function formatType(value) {
+    return i18n[currentLang].types[value] || value;
+  }
+
+  function formatProvince(value) {
+    return i18n[currentLang].provinces[value] || value;
+  }
+
+  function t(key, ...args) {
+    const value = i18n[currentLang][key];
+    if (typeof value === "function") return value(...args);
+    return value ?? key;
+  }
+
+  function normalizeLanguage(value) {
+    return value === "zh" ? "zh" : "en";
   }
 
   function sortSectors(a, b) {
@@ -486,7 +690,7 @@
   }
 
   function formatInteger(value) {
-    return Number(value || 0).toLocaleString("zh-CN");
+    return Number(value || 0).toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US");
   }
 
   function escapeHtml(value) {

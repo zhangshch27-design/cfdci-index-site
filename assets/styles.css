@@ -23,6 +23,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-lang="en"] .lang-zh,
+html[data-lang="zh"] .lang-en {
+  display: none !important;
+}
+
 body {
   margin: 0;
   color: var(--ink);
@@ -76,6 +81,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   width: min(1240px, calc(100% - 32px));
   margin: 16px auto 0;
   padding: 14px 18px;
@@ -118,6 +124,7 @@ input {
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  flex: 1;
 }
 
 .nav-links a {
@@ -135,6 +142,31 @@ input {
   color: var(--teal-dark);
 }
 
+.language-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f5f8f8;
+}
+
+.language-switch button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.language-switch button.is-active {
+  color: #ffffff;
+  background: var(--teal-dark);
+}
+
 .hero,
 .explorer,
 .method,
@@ -142,6 +174,7 @@ input {
 .citation,
 .signal-band,
 .domain-measurement,
+.cases,
 .evidence,
 .validation {
   padding: 72px 0;
@@ -250,12 +283,15 @@ input {
 .download-card,
 .citation-box,
 .audit-strip article,
+.method-detail-grid article,
 .pipeline-step,
 .domain-card,
 .prompt-console,
 .prompt-rules,
+.prompt-anatomy article,
 .evidence-card,
 .formula-card,
+.case-card,
 .validation-card,
 .validation-note {
   border: 1px solid rgba(214, 222, 225, 0.92);
@@ -716,20 +752,55 @@ tbody tr:hover {
 }
 
 .audit-strip p,
+.method-detail-grid p,
 .pipeline-step p,
 .domain-card p,
+.domain-card li,
 .prompt-rules li,
+.prompt-anatomy p,
 .evidence-chain p,
 .formula-card p,
+.case-card dd,
 .validation-card p,
 .validation-note p {
   color: var(--muted);
   line-height: 1.75;
 }
 
+.method-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.method-detail-grid article {
+  min-height: 220px;
+  padding: 20px;
+}
+
+.method-detail-grid h3,
+.prompt-anatomy h3,
+.case-card h3 {
+  margin: 0;
+  font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    Georgia,
+    serif;
+  font-size: 1.18rem;
+  line-height: 1.3;
+}
+
+.method-detail-grid p,
+.prompt-anatomy p {
+  margin: 12px 0 0;
+  font-size: 0.94rem;
+}
+
 .pipeline {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -740,18 +811,6 @@ tbody tr:hover {
 }
 
 .pipeline-step::after {
-  content: "";
-  position: absolute;
-  top: 34px;
-  right: -8px;
-  width: 14px;
-  height: 14px;
-  border-top: 2px solid var(--line);
-  border-right: 2px solid var(--line);
-  transform: rotate(45deg);
-}
-
-.pipeline-step:last-child::after {
   display: none;
 }
 
@@ -790,9 +849,20 @@ tbody tr:hover {
 }
 
 .domain-card {
-  min-height: 210px;
+  min-height: 230px;
   padding: 20px;
   border-top: 4px solid var(--blue);
+}
+
+.domain-grid.expanded .domain-card {
+  min-height: 320px;
+}
+
+.domain-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding-left: 18px;
 }
 
 .domain-card:nth-child(2n) {
@@ -845,6 +915,65 @@ tbody tr:hover {
 
 .prompt-rules li + li {
   margin-top: 10px;
+}
+
+.prompt-anatomy {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.prompt-anatomy article {
+  min-height: 170px;
+  padding: 20px;
+}
+
+.cases {
+  background: rgba(232, 237, 240, 0.72);
+  border-top: 1px solid rgba(214, 222, 225, 0.78);
+  border-bottom: 1px solid rgba(214, 222, 225, 0.78);
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.case-card {
+  min-height: 360px;
+  padding: 24px;
+}
+
+.case-card > span {
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.case-card h3 {
+  margin-top: 14px;
+  font-size: 1.32rem;
+}
+
+.case-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+
+.case-card dt {
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.case-card dd {
+  margin: 0 0 8px;
+}
+
+.case-formula {
+  margin-top: 14px;
 }
 
 .evidence {
@@ -1038,8 +1167,15 @@ tbody tr:hover {
   font-size: 0.92rem;
 }
 
-.data-empty main::before {
+html[data-lang="en"] .data-empty main::before {
+  content: "Data file failed to load";
+}
+
+html[data-lang="zh"] .data-empty main::before {
   content: "数据文件未加载";
+}
+
+.data-empty main::before {
   display: block;
   width: min(720px, calc(100% - 40px));
   margin: 80px auto;
@@ -1055,6 +1191,7 @@ tbody tr:hover {
   .download-grid,
   .citation-grid,
   .prompt-layout,
+  .method-detail-grid,
   .evidence-grid {
     grid-template-columns: 1fr;
   }
@@ -1076,6 +1213,8 @@ tbody tr:hover {
   }
 
   .domain-grid,
+  .prompt-anatomy,
+  .case-grid,
   .audit-strip,
   .validation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1095,6 +1234,16 @@ tbody tr:hover {
 
   .nav-links {
     justify-content: flex-start;
+    flex: none;
+  }
+
+  .language-switch {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .language-switch button {
+    flex: 1;
   }
 
   .hero-copy h1 {
@@ -1111,6 +1260,8 @@ tbody tr:hover {
   .method-cards,
   .pipeline,
   .domain-grid,
+  .prompt-anatomy,
+  .case-grid,
   .validation-grid {
     grid-template-columns: 1fr;
   }
@@ -1146,12 +1297,13 @@ tbody tr:hover {
   .hero,
   .explorer,
   .method,
-  .download,
-  .citation,
-  .signal-band,
-  .domain-measurement,
-  .evidence,
-  .validation {
+    .download,
+    .citation,
+    .signal-band,
+    .domain-measurement,
+    .cases,
+    .evidence,
+    .validation {
     padding: 46px 0;
   }
 
@@ -1183,15 +1335,18 @@ tbody tr:hover {
   .method-card,
   .download-card,
   .citation-box,
-  .audit-strip article,
-  .pipeline-step,
-  .domain-card,
-  .prompt-console,
-  .prompt-rules,
-  .evidence-card,
-  .formula-card,
-  .validation-card,
-  .validation-note {
+    .audit-strip article,
+    .method-detail-grid article,
+    .pipeline-step,
+    .domain-card,
+    .prompt-console,
+    .prompt-rules,
+    .prompt-anatomy article,
+    .evidence-card,
+    .formula-card,
+    .case-card,
+    .validation-card,
+    .validation-note {
     padding: 16px;
   }
 
