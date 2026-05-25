@@ -27,8 +27,8 @@
       domainMean: "Domain mean",
       regionTitleProvince: "Regional ranking",
       regionTitleCity: "City ranking",
-      regionCaptionProvince: "Top province-level means",
-      regionCaptionCity: (province) => `Top city means in ${province}`,
+      regionCaptionProvince: "Mean of the top five banks by province",
+      regionCaptionCity: (province) => `Mean of the top five banks by city in ${province}`,
       rank: "Rank",
       institution: "Institution",
       sector: "Sector",
@@ -123,8 +123,8 @@
       domainMean: "能力域均值",
       regionTitleProvince: "地区排名",
       regionTitleCity: "城市排名",
-      regionCaptionProvince: "省级均值前列",
-      regionCaptionCity: (province) => `${province} 城市均值前列`,
+      regionCaptionProvince: "各省前五家银行均值",
+      regionCaptionCity: (province) => `${province} 各城市前五家银行均值`,
       rank: "排名",
       institution: "机构",
       sector: "大类",
@@ -139,6 +139,7 @@
     },
   };
   const sectorOrder = ["银行", "保险", "证券"];
+  const regionRankingSector = "银行";
   const palette = ["#0f7b78", "#b45b32", "#2f6f98", "#6f4ca2", "#3d8c72", "#9a3733"];
   let currentLang = normalizeLanguage(localStorage.getItem("cfdci-language") || document.documentElement.dataset.lang || "en");
   let initialized = false;
@@ -522,9 +523,9 @@
 
   function renderRegionChart() {
     if (!charts.region) return;
-    const filtered = getFilteredRows({ includeYear: true, includeInstitution: true });
+    const filtered = getRegionRankingRows();
     const field = state.province === "all" ? "province" : "city";
-    const grouped = groupAverage(filtered, field, state.metric).slice(0, 12);
+    const grouped = groupTopAverage(filtered, field, state.metric, 5).slice(0, 12);
 
     $("#regionTitle").textContent = state.province === "all" ? t("regionTitleProvince") : t("regionTitleCity");
     $("#regionCaption").textContent =
@@ -602,6 +603,17 @@
     });
   }
 
+  function getRegionRankingRows() {
+    const query = state.institution.trim();
+    return rows.filter((row) => {
+      if (row.year !== state.year) return false;
+      if (row.sector !== regionRankingSector) return false;
+      if (state.province !== "all" && row.province !== state.province) return false;
+      if (query && !matchesInstitution(row.institution, query)) return false;
+      return isNumber(row[state.metric]);
+    });
+  }
+
   function groupAverage(sourceRows, field, metric) {
     const grouped = new Map();
     sourceRows.forEach((row) => {
@@ -615,6 +627,24 @@
       .map(([name, values]) => ({ name, value: values.reduce((sum, value) => sum + value, 0) / values.length }))
       .sort((a, b) => b.value - a.value);
   }
+
+  function groupTopAverage(sourceRows, field, metric, limit) {
+    const grouped = new Map();
+    sourceRows.forEach((row) => {
+      if (!isNumber(row[metric])) return;
+      const key = row[field] || "__unknown__";
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(row[metric]);
+    });
+
+    return [...grouped.entries()]
+      .map(([name, values]) => {
+        const topValues = values.sort((a, b) => b - a).slice(0, limit);
+        return { name, value: topValues.reduce((sum, value) => sum + value, 0) / topValues.length };
+      })
+      .sort((a, b) => b.value - a.value);
+  }
+
 
   function topGroups(sourceRows, field, limit) {
     const counts = new Map();
