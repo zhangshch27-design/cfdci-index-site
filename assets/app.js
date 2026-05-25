@@ -435,6 +435,8 @@
       $("#trendCaption").textContent = t("trendCurrent");
     }
 
+    const trendAxisMax = getTrendAxisMax(series);
+
     charts.trend.setOption({
       color: palette,
       grid: { top: 54, right: 24, bottom: 36, left: 44 },
@@ -449,7 +451,7 @@
       yAxis: {
         type: "value",
         min: 0,
-        max: 1,
+        max: trendAxisMax,
         splitLine: { lineStyle: { color: "#e5ded1" } },
         axisLabel: { formatter: (value) => value.toFixed(1) },
       },
@@ -627,6 +629,14 @@
     return sourceRows
       .filter((row) => isNumber(row[metric]))
       .reduce((best, row) => (!best || row[metric] > best[metric] ? row : best), null);
+  }
+
+  function getTrendAxisMax(series) {
+    const values = series.flatMap((item) => item.data || []).filter(isNumber);
+    if (!values.length) return 1;
+    const padded = Math.max(0.1, Math.max(...values) * 1.08);
+    const step = padded <= 0.2 ? 0.02 : padded <= 0.8 ? 0.05 : 0.1;
+    return Math.min(1, Number((Math.ceil(padded / step) * step).toFixed(2)));
   }
 
   function average(sourceRows, metric) {
